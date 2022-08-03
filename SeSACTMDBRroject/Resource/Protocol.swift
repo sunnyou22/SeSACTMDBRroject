@@ -17,3 +17,9 @@ extension UIViewController: ReusableIdentifier {
         return String(describing: self)
     }
 }
+
+extension CollectionViewCell: ReusableIdentifier {
+    static var reuseIdentifer: String {
+        return String(describing: self)
+    }
+}
