@@ -13,6 +13,18 @@
 		90A838002899F7BA00D61D88 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 90A837FE2899F7BA00D61D88 /* Main.storyboard */; };
 		90A838022899F7BA00D61D88 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 90A838012899F7BA00D61D88 /* Assets.xcassets */; };
 		90A838052899F7BA00D61D88 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 90A838032899F7BA00D61D88 /* LaunchScreen.storyboard */; };
+		90A8380D2899F7D500D61D88 /* .gitignore in Resources */ = {isa = PBXBuildFile; fileRef = 90A8380C2899F7D500D61D88 /* .gitignore */; };
+		90A8380F2899F82A00D61D88 /* SearchViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 90A8380E2899F82A00D61D88 /* SearchViewController.swift */; };
+		90A838112899F8A200D61D88 /* APIKey.swift in Sources */ = {isa = PBXBuildFile; fileRef = 90A838102899F8A200D61D88 /* APIKey.swift */; };
+		90A838132899F9DE00D61D88 /* Constant.swift in Sources */ = {isa = PBXBuildFile; fileRef = 90A838122899F9DE00D61D88 /* Constant.swift */; };
+		90A838172899FADD00D61D88 /* Exemple.swift in Sources */ = {isa = PBXBuildFile; fileRef = 90A838162899FADD00D61D88 /* Exemple.swift */; };
+		90A8382B289AA5C300D61D88 /* Alamofire in Frameworks */ = {isa = PBXBuildFile; productRef = 90A8382A289AA5C300D61D88 /* Alamofire */; };
+		90A8382E289AA60700D61D88 /* SwiftyJSON in Frameworks */ = {isa = PBXBuildFile; productRef = 90A8382D289AA60700D61D88 /* SwiftyJSON */; };
+		90A83830289AD98000D61D88 /* Protocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 90A8382F289AD98000D61D88 /* Protocol.swift */; };
+		90A83833289AE71B00D61D88 /* CustomSearchViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 90A83831289AE71B00D61D88 /* CustomSearchViewController.swift */; };
+		90A83834289AE71B00D61D88 /* CustomSearchViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 90A83832289AE71B00D61D88 /* CustomSearchViewController.xib */; };
+		90A83837289AEB6700D61D88 /* CollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 90A83835289AEB6700D61D88 /* CollectionViewCell.swift */; };
+		90A83838289AEB6700D61D88 /* CollectionViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 90A83836289AEB6700D61D88 /* CollectionViewCell.xib */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -24,6 +36,16 @@
 		90A838012899F7BA00D61D88 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		90A838042899F7BA00D61D88 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		90A838062899F7BA00D61D88 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		90A8380C2899F7D500D61D88 /* .gitignore */ = {isa = PBXFileReference; lastKnownFileType = text; path = .gitignore; sourceTree = "<group>"; };
+		90A8380E2899F82A00D61D88 /* SearchViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchViewController.swift; sourceTree = SOURCE_ROOT; };
+		90A838102899F8A200D61D88 /* APIKey.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = APIKey.swift; sourceTree = "<group>"; };
+		90A838122899F9DE00D61D88 /* Constant.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = Constant.swift; path = SeSACTMDBRroject/Key/Constant.swift; sourceTree = SOURCE_ROOT; };
+		90A838162899FADD00D61D88 /* Exemple.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Exemple.swift; sourceTree = "<group>"; };
+		90A8382F289AD98000D61D88 /* Protocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Protocol.swift; sourceTree = "<group>"; };
+		90A83831289AE71B00D61D88 /* CustomSearchViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomSearchViewController.swift; sourceTree = SOURCE_ROOT; };
+		90A83832289AE71B00D61D88 /* CustomSearchViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = CustomSearchViewController.xib; sourceTree = SOURCE_ROOT; };
+		90A83835289AEB6700D61D88 /* CollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CollectionViewCell.swift; sourceTree = "<group>"; };
+		90A83836289AEB6700D61D88 /* CollectionViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = CollectionViewCell.xib; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -31,6 +53,8 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				90A8382E289AA60700D61D88 /* SwiftyJSON in Frameworks */,
+				90A8382B289AA5C300D61D88 /* Alamofire in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -40,6 +64,7 @@
 		90A837EC2899F7B900D61D88 = {
 			isa = PBXGroup;
 			children = (
+				90A8380C2899F7D500D61D88 /* .gitignore */,
 				90A837F72899F7BA00D61D88 /* SeSACTMDBRroject */,
 				90A837F62899F7BA00D61D88 /* Products */,
 			);
@@ -56,15 +81,40 @@
 		90A837F72899F7BA00D61D88 /* SeSACTMDBRroject */ = {
 			isa = PBXGroup;
 			children = (
+				90A83831289AE71B00D61D88 /* CustomSearchViewController.swift */,
+				90A83832289AE71B00D61D88 /* CustomSearchViewController.xib */,
+				90A838152899FA8800D61D88 /* Key */,
+				90A838142899FA1500D61D88 /* Resource */,
+				90A8380E2899F82A00D61D88 /* SearchViewController.swift */,
 				90A837F82899F7BA00D61D88 /* AppDelegate.swift */,
 				90A837FA2899F7BA00D61D88 /* SceneDelegate.swift */,
 				90A837FC2899F7BA00D61D88 /* ViewController.swift */,
 				90A837FE2899F7BA00D61D88 /* Main.storyboard */,
+				90A83835289AEB6700D61D88 /* CollectionViewCell.swift */,
+				90A83836289AEB6700D61D88 /* CollectionViewCell.xib */,
 				90A838012899F7BA00D61D88 /* Assets.xcassets */,
 				90A838032899F7BA00D61D88 /* LaunchScreen.storyboard */,
 				90A838062899F7BA00D61D88 /* Info.plist */,
 			);
 			path = SeSACTMDBRroject;
+			sourceTree = "<group>";
+		};
+		90A838142899FA1500D61D88 /* Resource */ = {
+			isa = PBXGroup;
+			children = (
+				90A8382F289AD98000D61D88 /* Protocol.swift */,
+			);
+			path = Resource;
+			sourceTree = "<group>";
+		};
+		90A838152899FA8800D61D88 /* Key */ = {
+			isa = PBXGroup;
+			children = (
+				90A838162899FADD00D61D88 /* Exemple.swift */,
+				90A838102899F8A200D61D88 /* APIKey.swift */,
+				90A838122899F9DE00D61D88 /* Constant.swift */,
+			);
+			path = Key;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -83,6 +133,10 @@
 			dependencies = (
 			);
 			name = SeSACTMDBRroject;
+			packageProductDependencies = (
+				90A8382A289AA5C300D61D88 /* Alamofire */,
+				90A8382D289AA60700D61D88 /* SwiftyJSON */,
+			);
 			productName = SeSACTMDBRroject;
 			productReference = 90A837F52899F7BA00D61D88 /* SeSACTMDBRroject.app */;
 			productType = "com.apple.product-type.application";
@@ -111,6 +165,10 @@
 				Base,
 			);
 			mainGroup = 90A837EC2899F7B900D61D88;
+			packageReferences = (
+				90A83829289AA5C300D61D88 /* XCRemoteSwiftPackageReference "Alamofire" */,
+				90A8382C289AA60700D61D88 /* XCRemoteSwiftPackageReference "SwiftyJSON" */,
+			);
 			productRefGroup = 90A837F62899F7BA00D61D88 /* Products */;
 			projectDirPath = "";
 			projectRoot = "";
@@ -125,7 +183,10 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				90A8380D2899F7D500D61D88 /* .gitignore in Resources */,
 				90A838052899F7BA00D61D88 /* LaunchScreen.storyboard in Resources */,
+				90A83838289AEB6700D61D88 /* CollectionViewCell.xib in Resources */,
+				90A83834289AE71B00D61D88 /* CustomSearchViewController.xib in Resources */,
 				90A838022899F7BA00D61D88 /* Assets.xcassets in Resources */,
 				90A838002899F7BA00D61D88 /* Main.storyboard in Resources */,
 			);
@@ -138,9 +199,16 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				90A83837289AEB6700D61D88 /* CollectionViewCell.swift in Sources */,
 				90A837FD2899F7BA00D61D88 /* ViewController.swift in Sources */,
 				90A837F92899F7BA00D61D88 /* AppDelegate.swift in Sources */,
+				90A8380F2899F82A00D61D88 /* SearchViewController.swift in Sources */,
+				90A83830289AD98000D61D88 /* Protocol.swift in Sources */,
+				90A83833289AE71B00D61D88 /* CustomSearchViewController.swift in Sources */,
 				90A837FB2899F7BA00D61D88 /* SceneDelegate.swift in Sources */,
+				90A838112899F8A200D61D88 /* APIKey.swift in Sources */,
+				90A838172899FADD00D61D88 /* Exemple.swift in Sources */,
+				90A838132899F9DE00D61D88 /* Constant.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -358,6 +426,38 @@
 			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
+
+/* Begin XCRemoteSwiftPackageReference section */
+		90A83829289AA5C300D61D88 /* XCRemoteSwiftPackageReference "Alamofire" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/Alamofire/Alamofire.git";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 5.0.0;
+			};
+		};
+		90A8382C289AA60700D61D88 /* XCRemoteSwiftPackageReference "SwiftyJSON" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/SwiftyJSON/SwiftyJSON.git";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 5.0.0;
+			};
+		};
+/* End XCRemoteSwiftPackageReference section */
+
+/* Begin XCSwiftPackageProductDependency section */
+		90A8382A289AA5C300D61D88 /* Alamofire */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 90A83829289AA5C300D61D88 /* XCRemoteSwiftPackageReference "Alamofire" */;
+			productName = Alamofire;
+		};
+		90A8382D289AA60700D61D88 /* SwiftyJSON */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 90A8382C289AA60700D61D88 /* XCRemoteSwiftPackageReference "SwiftyJSON" */;
+			productName = SwiftyJSON;
+		};
+/* End XCSwiftPackageProductDependency section */
 	};
 	rootObject = 90A837ED2899F7B900D61D88 /* Project object */;
 }
