@@ -17,11 +17,14 @@ class SearchViewController: UIViewController {
     
     var list: [MovieData] = []
     var ganrelist: [(Int, String)] = []
+    var totalCount = 0
+    var startPage = 1
     
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        //MARK: 화면 데이터 연결
+        //MARK: 화면 데이터 연결 및 페이지 네이션
+        collectionView.prefetchDataSource = self
         collectionView.delegate = self
         collectionView.dataSource = self
         self.collectionView.register(UINib(nibName: CollectionViewCell.reuseIdentifer, bundle: nil), forCellWithReuseIdentifier: CollectionViewCell.reuseIdentifer)
@@ -34,15 +37,7 @@ class SearchViewController: UIViewController {
         barAppearance.backgroundColor = .systemBackground
         navigationItem.scrollEdgeAppearance = barAppearance
         
-        let layout = UICollectionViewFlowLayout()
-        let spacing: CGFloat = 20
-        let width = UIScreen.main.bounds.width - (spacing * 2)
-        layout.itemSize = CGSize(width: width, height: width * 1.2)
-        layout.scrollDirection = .vertical
-        layout.sectionInset = UIEdgeInsets(top: spacing, left: spacing, bottom: spacing, right: spacing)
-        //        layout.minimumInteritemSpacing = spacing * 2 // 행에 많이 있을 때
-        layout.minimumLineSpacing = spacing * 2
-        collectionView.collectionViewLayout = layout
+        collectionView.collectionViewLayout = collectionViewLayout()
         
         //MARK: api요청
         requestTMDBData()
@@ -59,7 +54,7 @@ class SearchViewController: UIViewController {
                 print("JSON: \(json)")
                 
                 for i in json["genre_ids"].arrayValue {
-                   let ganreID = i["id"].intValue
+                    let ganreID = i["id"].intValue
                     let ganreName = i["name"].stringValue
                     self.ganrelist.append((ganreID, ganreName))
                 }
@@ -69,11 +64,10 @@ class SearchViewController: UIViewController {
             }
         }
     }
-
     
     func requestTMDBData() {
         let url = APIKey.TMDBAPI + APIKey.TMDBAPI_ID
-       let formatter = DateFormatter()
+        let formatter = DateFormatter()
         formatter.locale = Locale(identifier: "ko_KR")
         formatter.dateFormat = "MM/dd/yyyy"
         AF.request(url, method: .get).validate(statusCode: 200...404).responseData { response in
@@ -96,6 +90,8 @@ class SearchViewController: UIViewController {
                     
                     self.list.append(data)
                     print(APIKey.TMDBGENRE)
+                    
+                    self.totalCount = json["total_results"].intValue
                     
                 }
                 self.collectionView.reloadData()
@@ -138,5 +134,42 @@ extension SearchViewController: UICollectionViewDelegate, UICollectionViewDataSo
         return cell
     }
     
+    func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
+        let sb = UIStoryboard(name: "Main", bundle: nil)
+        guard let vc = sb.instantiateViewController(withIdentifier: DetailTableViewController.reuseIdentifer) as? DetailTableViewController else { return }
+        self.navigationController?.pushViewController(vc, animated: true)
+    }
+}
+
+extension SearchViewController: UICollectionViewDataSourcePrefetching {
     
+    //셀이 화면에 보이기 직전에 필요한 리소스를 다운
+    func collectionView(_ collectionView: UICollectionView, prefetchItemsAt indexPaths: [IndexPath]) {
+        
+        for indexPath in indexPaths {
+            if list.count == indexPath.item && list.count < totalCount {
+                startPage += 1 // 흠 셀의 크기가 너무 커서 하나마나인가..?
+                
+            }
+        }
+    }
+    
+    func collectionView(_ collectionView: UICollectionView, cancelPrefetchingForItemsAt indexPaths: [IndexPath]) {
+        print("==============취소")
+    }
+}
+
+extension SearchViewController {
+    
+    func collectionViewLayout() -> UICollectionViewLayout {
+        let layout = UICollectionViewFlowLayout()
+        let spacing: CGFloat = 20
+        let width = UIScreen.main.bounds.width - (spacing * 2)
+        layout.itemSize = CGSize(width: width, height: width * 1.2)
+        layout.scrollDirection = .vertical
+        layout.sectionInset = UIEdgeInsets(top: spacing, left: spacing, bottom: spacing, right: spacing)
+        //        layout.minimumInteritemSpacing = spacing * 2 // 행에 많이 있을 때
+        layout.minimumLineSpacing = spacing * 2
+       return layout
+    }
 }

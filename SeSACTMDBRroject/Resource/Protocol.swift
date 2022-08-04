@@ -23,3 +23,15 @@ extension CollectionViewCell: ReusableIdentifier {
         return String(describing: self)
     }
 }
+
+extension DetailTableViewCell: ReusableIdentifier {
+    static var reuseIdentifer: String {
+        return String(describing: self)
+    }
+}
+//
+//extension DetailTableViewController: ReusableIdentifier {
+//    static var reuseIdentifer: String {
+//        return String(describing: self)
+//    }
+//}
