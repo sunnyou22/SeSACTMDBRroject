@@ -54,19 +54,20 @@
                                 <nil key="highlightedColor"/>
                             </label>
                             <stackView opaque="NO" contentMode="scaleToFill" distribution="fillEqually" translatesAutoresizingMaskIntoConstraints="NO" id="yBD-N1-8Q6">
-                                <rect key="frame" x="16" y="184" width="83" height="34.5"/>
+                                <rect key="frame" x="16" y="192" width="80" height="26.5"/>
                                 <subviews>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="평점" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="pNJ-Vw-xyJ">
-                                        <rect key="frame" x="0.0" y="0.0" width="41.5" height="34.5"/>
+                                        <rect key="frame" x="0.0" y="0.0" width="40" height="26.5"/>
                                         <constraints>
-                                            <constraint firstAttribute="width" secondItem="pNJ-Vw-xyJ" secondAttribute="height" multiplier="12:10" id="FVG-ig-Zkm"/>
+                                            <constraint firstAttribute="width" secondItem="pNJ-Vw-xyJ" secondAttribute="height" multiplier="15:10" id="FVG-ig-Zkm"/>
+                                            <constraint firstAttribute="width" constant="40" id="GPT-MT-UFA"/>
                                         </constraints>
                                         <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                         <nil key="textColor"/>
                                         <nil key="highlightedColor"/>
                                     </label>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="k6J-uI-dPC">
-                                        <rect key="frame" x="41.5" y="0.0" width="41.5" height="34.5"/>
+                                        <rect key="frame" x="40" y="0.0" width="40" height="26.5"/>
                                         <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                         <nil key="textColor"/>
                                         <nil key="highlightedColor"/>
@@ -154,19 +155,19 @@
             </constraints>
             <size key="customSize" width="453" height="455"/>
             <connections>
-                <outlet property="characters" destination="pED-Ew-mUp" id="LDK-Vf-90S"/>
                 <outlet property="clipButton" destination="j18-U8-hMU" id="L2c-ma-BST"/>
                 <outlet property="containerView" destination="eer-Jo-dTr" id="2V3-JH-MiC"/>
                 <outlet property="detailInfoLable" destination="UTk-0U-yDR" id="hmK-Ab-3UJ"/>
                 <outlet property="forDetailButton" destination="nPL-df-GIf" id="qoF-N4-KX6"/>
                 <outlet property="ganre" destination="txa-9m-6GC" id="zAk-jR-2SS"/>
+                <outlet property="movieTitle" destination="nby-Pc-cF7" id="UQC-V9-van"/>
+                <outlet property="overview" destination="pED-Ew-mUp" id="LDK-Vf-90S"/>
                 <outlet property="posterImage" destination="mkE-sz-U5c" id="b1H-fB-DOf"/>
                 <outlet property="posterView" destination="SDD-f0-6WI" id="Ndl-4o-5PC"/>
+                <outlet property="rateLabel" destination="pNJ-Vw-xyJ" id="ERl-cm-vAE"/>
+                <outlet property="rateNumberLabel" destination="k6J-uI-dPC" id="A6x-Op-Lvx"/>
                 <outlet property="releaseDateLabel" destination="0iJ-Rn-Jhe" id="8Q5-Xy-cSd"/>
-                <outlet property="scoreLable" destination="pNJ-Vw-xyJ" id="ERl-cm-vAE"/>
-                <outlet property="scoreNumberLable" destination="k6J-uI-dPC" id="A6x-Op-Lvx"/>
                 <outlet property="sectionView" destination="3Mp-YB-X7b" id="cws-4p-e0P"/>
-                <outlet property="title" destination="nby-Pc-cF7" id="UQC-V9-van"/>
             </connections>
             <point key="canvasLocation" x="289.13043478260875" y="159.70982142857142"/>
         </collectionViewCell>

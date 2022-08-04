@@ -14,13 +14,13 @@ class CollectionViewCell: UICollectionViewCell {
     @IBOutlet weak var releaseDateLabel: UILabel!
     @IBOutlet weak var posterView: UIView!
     @IBOutlet weak var posterImage: UIImageView!
-    @IBOutlet weak var title: UILabel!
-    @IBOutlet weak var characters: UILabel!
+    @IBOutlet weak var movieTitle: UILabel!
+    @IBOutlet weak var overview: UILabel!
     @IBOutlet weak var sectionView: UIView!
     @IBOutlet weak var detailInfoLable: UILabel!
     @IBOutlet weak var forDetailButton: UIButton!
-    @IBOutlet weak var scoreLable: UILabel!
-    @IBOutlet weak var scoreNumberLable: UILabel!
+    @IBOutlet weak var rateLabel: UILabel!
+    @IBOutlet weak var rateNumberLabel: UILabel!
     @IBOutlet weak var clipButton: UIButton!
     
     let cornerRadiusValue: CGFloat = 12
@@ -33,32 +33,33 @@ class CollectionViewCell: UICollectionViewCell {
         configureImage()
         configureContainView()
         configureButtonUI()
+        configureText()
     }
     
     func setFont() {
         releaseDateLabel.font = .dateFont
         ganre.font = .systemBold20
-        scoreLable.font = .normalFont
-        scoreNumberLable.font = .normalFont
-        title.font = .titleFont20
-        characters.font = .subTitleFont18
+        rateLabel.font = .normalFont
+        rateNumberLabel.font = .normalFont
+        movieTitle.font = .titleFont20
+        overview.font = .subTitleFont18
         detailInfoLable.font = .normalFont
     }
     
     //MARK: Label, View 컬러
     func setColor() {
         ganre.textColor = .black
-        scoreLable.textColor = .white
-        scoreNumberLable.textColor = .black
+        rateLabel.textColor = .white
+        rateNumberLabel.textColor = .black
         detailInfoLable.textColor = .black
         
         releaseDateLabel.textColor = .gray
-        characters.textColor = .gray
+        overview.textColor = .gray
         
         sectionView.backgroundColor = .black
         posterView.backgroundColor = .white
-        scoreLable.backgroundColor = .systemPurple
-        scoreNumberLable.backgroundColor = .white
+        rateLabel.backgroundColor = .systemPurple
+        rateNumberLabel.backgroundColor = .white
     }
     
     func configureImage() {
@@ -90,11 +91,11 @@ class CollectionViewCell: UICollectionViewCell {
     }
     
     func configureText() {
-        scoreLable.text = "평점"
-        scoreLable.textAlignment = .center
+        rateLabel.text = "평점"
+        rateLabel.textAlignment = .center
         
-        scoreNumberLable.textAlignment = .center
-        characters.lineBreakMode = .byTruncatingTail
+        rateNumberLabel.textAlignment = .center
+        overview.lineBreakMode = .byTruncatingTail
         
         detailInfoLable.text = "자세히 보기"
         

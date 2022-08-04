@@ -14,8 +14,9 @@ import Kingfisher
 class SearchViewController: UIViewController {
     
     @IBOutlet weak var collectionView: UICollectionView!
-  
-    var list: [String] = []
+    
+    var list: [MovieData] = []
+    var ganrelist: [(Int, String)] = []
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -39,19 +40,44 @@ class SearchViewController: UIViewController {
         layout.itemSize = CGSize(width: width, height: width * 1.2)
         layout.scrollDirection = .vertical
         layout.sectionInset = UIEdgeInsets(top: spacing, left: spacing, bottom: spacing, right: spacing)
-//        layout.minimumInteritemSpacing = spacing * 2 // 행에 많이 있을 때
+        //        layout.minimumInteritemSpacing = spacing * 2 // 행에 많이 있을 때
         layout.minimumLineSpacing = spacing * 2
         collectionView.collectionViewLayout = layout
         
         //MARK: api요청
-                requestTMDBData()
+        requestTMDBData()
         
     }
     
+    func requestGanre() {
+        let url = APIKey.TMDBGENRE
+        
+        AF.request(url, method: .get).validate().responseData { response in
+            switch response.result {
+            case .success(let value):
+                let json = JSON(value)
+                print("JSON: \(json)")
+                
+                for i in json["genre_ids"].arrayValue {
+                   let ganreID = i["id"].intValue
+                    let ganreName = i["name"].stringValue
+                    self.ganrelist.append((ganreID, ganreName))
+                }
+                self.collectionView.reloadData()
+            case .failure(let error):
+                print(error)
+            }
+        }
+    }
+
+    
     func requestTMDBData() {
         let url = APIKey.TMDBAPI + APIKey.TMDBAPI_ID
-        
+       let formatter = DateFormatter()
+        formatter.locale = Locale(identifier: "ko_KR")
+        formatter.dateFormat = "MM/dd/yyyy"
         AF.request(url, method: .get).validate(statusCode: 200...404).responseData { response in
+            
             switch response.result {
             case .success(let value):
                 let json = JSON(value)
@@ -59,23 +85,32 @@ class SearchViewController: UIViewController {
                 print("JSON: \(json)")
                 
                 for item in json["results"].arrayValue {
-                    self.list.append(APIKey.TMDBIMAGE_W500 + item["poster_path"].stringValue)
-                  
-                    print(self.list, "패치")
+                    let image = APIKey.TMDBIMAGE_W500 + item["poster_path"].stringValue
+                    let releaseDate = item["release_date"].stringValue
+                    let genre = item["genre_ids"]["id"].arrayValue
+                    let rate = item["vote_average"].doubleValue
+                    let title = item["title"].stringValue
+                    let overView = item["overview"].stringValue
+                    
+                    let data = MovieData(releaseDate: releaseDate, image: image, rate: rate, ganre: genre, title: title, overView: overView)
+                    
+                    self.list.append(data)
+                    print(APIKey.TMDBGENRE)
+                    
                 }
                 self.collectionView.reloadData()
-
+                
                 if statusCode == 200 {
                     print(statusCode)
                 } else {
                     print(json["status_message"].stringValue)
-            }
+                }
+                
             case .failure(let error):
                 print(error)
             }
         }
     }
-    
 }
 
 extension SearchViewController: UICollectionViewDelegate, UICollectionViewDataSource {
@@ -84,12 +119,21 @@ extension SearchViewController: UICollectionViewDelegate, UICollectionViewDataSo
     }
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
+        let formatter = DateFormatter()
+        formatter.locale = Locale(identifier: "ko_KR")
+        formatter.dateFormat = "MM/dd/yyy"
         guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: CollectionViewCell.reuseIdentifer, for: indexPath) as? CollectionViewCell else {
             return UICollectionViewCell()
         }
+        // 장르불러오기
+        let digit: Double = pow(10, 1)
+        let url = URL(string: list[indexPath.row].image)
         
-        let url = URL(string: list[indexPath.row])
         cell.posterImage.kf.setImage(with: url)
+        cell.releaseDateLabel.text = list[indexPath.row].releaseDate
+        cell.rateNumberLabel.text = String(round((list[indexPath.row].rate * digit) / digit))
+        cell.movieTitle.text = list[indexPath.row].title
+        cell.overview.text = list[indexPath.row].overView
         
         return cell
     }
