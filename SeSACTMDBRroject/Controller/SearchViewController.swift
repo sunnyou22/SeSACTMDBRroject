@@ -16,7 +16,8 @@ class SearchViewController: UIViewController {
     @IBOutlet weak var collectionView: UICollectionView!
     
     var list: [MovieData] = []
-    var ganrelist: [(Int, String)] = []
+    var ganrelist: Dictionary<Int, String> = [:]
+    var idList: [Int] = []
     var totalCount = 0
     var startPage = 1
     
@@ -41,7 +42,7 @@ class SearchViewController: UIViewController {
         
         //MARK: api요청
         requestTMDBData()
-        
+        requestGanre() //1, 서버통신 2.데이터를 가져왔는지 , 3. 데이터 형태확인
     }
     
     func requestGanre() {
@@ -51,12 +52,15 @@ class SearchViewController: UIViewController {
             switch response.result {
             case .success(let value):
                 let json = JSON(value)
-                print("JSON: \(json)")
                 
-                for i in json["genre_ids"].arrayValue {
+                print("JSON: \(json)")
+                print(json["genres"].arrayValue.count)
+                
+                for i in json["genres"].arrayValue {
                     let ganreID = i["id"].intValue
                     let ganreName = i["name"].stringValue
-                    self.ganrelist.append((ganreID, ganreName))
+                    self.ganrelist.updateValue(ganreName, forKey: ganreID)
+                    self.idList.append(ganreID)
                 }
                 self.collectionView.reloadData()
             case .failure(let error):
@@ -77,16 +81,17 @@ class SearchViewController: UIViewController {
                 let json = JSON(value)
                 let statusCode = response.response?.statusCode ?? 404 // 이렇게 statusCode를 해결할 수 있음
                 print("JSON: \(json)")
+                print("\(json["results"].arrayValue.count)")
                 
                 for item in json["results"].arrayValue {
                     let image = APIKey.TMDBIMAGE_W500 + item["poster_path"].stringValue
-                    let releaseDate = item["release_date"].stringValue
-                    let genre = item["genre_ids"]["id"].arrayValue
+                    let releaseDate = formatter.date(from: item["release_date"].stringValue)
                     let rate = item["vote_average"].doubleValue
                     let title = item["title"].stringValue
                     let overView = item["overview"].stringValue
+                    let movieganre = item["genre_ids"].arrayValue[0].intValue
                     
-                    let data = MovieData(releaseDate: releaseDate, image: image, rate: rate, ganre: genre, title: title, overView: overView)
+                    let data = MovieData(releaseDate: releaseDate ?? Date(), image: image, ganre: movieganre, rate: rate, title: title, overView: overView)
                     
                     self.list.append(data)
                     print(APIKey.TMDBGENRE)
@@ -117,7 +122,7 @@ extension SearchViewController: UICollectionViewDelegate, UICollectionViewDataSo
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         let formatter = DateFormatter()
         formatter.locale = Locale(identifier: "ko_KR")
-        formatter.dateFormat = "MM/dd/yyy"
+        formatter.dateFormat = "MM/dd/yyyy"
         guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: CollectionViewCell.reuseIdentifer, for: indexPath) as? CollectionViewCell else {
             return UICollectionViewCell()
         }
@@ -125,12 +130,15 @@ extension SearchViewController: UICollectionViewDelegate, UICollectionViewDataSo
         let digit: Double = pow(10, 1)
         let url = URL(string: list[indexPath.row].image)
         
-        cell.posterImage.kf.setImage(with: url)
-        cell.releaseDateLabel.text = list[indexPath.row].releaseDate
-        cell.rateNumberLabel.text = String(round((list[indexPath.row].rate * digit) / digit))
-        cell.movieTitle.text = list[indexPath.row].title
-        cell.overview.text = list[indexPath.row].overView
+        let movie = list[indexPath.row]
         
+        cell.posterImage.kf.setImage(with: url)
+        cell.releaseDateLabel.text = formatter.string(from: movie.releaseDate)
+        cell.rateNumberLabel.text = String(round((movie.rate * digit) / digit))
+        cell.movieTitle.text = movie.title
+        cell.overview.text = movie.overView
+        cell.ganre.text = ganrelist[movie.ganre] //악 됐다...
+       
         return cell
     }
     
@@ -149,7 +157,7 @@ extension SearchViewController: UICollectionViewDataSourcePrefetching {
         for indexPath in indexPaths {
             if list.count == indexPath.item && list.count < totalCount {
                 startPage += 1 // 흠 셀의 크기가 너무 커서 하나마나인가..?
-                
+                //추가 서버통신필요
             }
         }
     }

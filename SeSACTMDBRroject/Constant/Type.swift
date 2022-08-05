@@ -9,10 +9,10 @@ import Foundation
 import SwiftyJSON
 
 struct MovieData {
-    var releaseDate: String
+    var releaseDate: Date
     var image: String
+    var ganre: Int
     var rate: Double
-    var ganre: [JSON]
     var title: String
     var overView: String
 }
