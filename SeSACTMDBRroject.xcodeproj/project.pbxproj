@@ -27,6 +27,8 @@
 		90C21F12289C287800F1AF0F /* Type.swift in Sources */ = {isa = PBXBuildFile; fileRef = 90C21F11289C287800F1AF0F /* Type.swift */; };
 		90C21F14289C58AB00F1AF0F /* DetailTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 90C21F13289C58AB00F1AF0F /* DetailTableViewCell.swift */; };
 		90C21F16289C596500F1AF0F /* DetailTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 90C21F15289C596500F1AF0F /* DetailTableViewController.swift */; };
+		90C21F1B289D051000F1AF0F /* APIManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 90C21F1A289D051000F1AF0F /* APIManager.swift */; };
+		90C21F1D289E3F3600F1AF0F /* OverVeiwTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 90C21F1C289E3F3600F1AF0F /* OverVeiwTableViewCell.swift */; };
 		90CD1BC5289C01B100D73A17 /* Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 90CD1BC4289C01B100D73A17 /* Extension.swift */; };
 /* End PBXBuildFile section */
 
@@ -50,6 +52,8 @@
 		90C21F11289C287800F1AF0F /* Type.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Type.swift; sourceTree = "<group>"; };
 		90C21F13289C58AB00F1AF0F /* DetailTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailTableViewCell.swift; sourceTree = "<group>"; };
 		90C21F15289C596500F1AF0F /* DetailTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailTableViewController.swift; sourceTree = "<group>"; };
+		90C21F1A289D051000F1AF0F /* APIManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = APIManager.swift; path = SeSACTMDBRroject/Key/APIManager.swift; sourceTree = SOURCE_ROOT; };
+		90C21F1C289E3F3600F1AF0F /* OverVeiwTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = OverVeiwTableViewCell.swift; path = SeSACTMDBRroject/Storyboard/OverVeiwTableViewCell.swift; sourceTree = SOURCE_ROOT; };
 		90CD1BC4289C01B100D73A17 /* Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Extension.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -132,6 +136,7 @@
 		90A8383A289AEF2F00D61D88 /* Controller */ = {
 			isa = PBXGroup;
 			children = (
+				90C21F1C289E3F3600F1AF0F /* OverVeiwTableViewCell.swift */,
 				90C21F13289C58AB00F1AF0F /* DetailTableViewCell.swift */,
 				90C21F15289C596500F1AF0F /* DetailTableViewController.swift */,
 				90A8380E2899F82A00D61D88 /* SearchViewController.swift */,
@@ -151,6 +156,7 @@
 		90CD1BC3289C018200D73A17 /* Constant */ = {
 			isa = PBXGroup;
 			children = (
+				90C21F1A289D051000F1AF0F /* APIManager.swift */,
 				90CD1BC4289C01B100D73A17 /* Extension.swift */,
 				90C21F11289C287800F1AF0F /* Type.swift */,
 			);
@@ -246,12 +252,14 @@
 				90A8380F2899F82A00D61D88 /* SearchViewController.swift in Sources */,
 				90A83830289AD98000D61D88 /* Protocol.swift in Sources */,
 				90C21F12289C287800F1AF0F /* Type.swift in Sources */,
+				90C21F1B289D051000F1AF0F /* APIManager.swift in Sources */,
 				90C21F14289C58AB00F1AF0F /* DetailTableViewCell.swift in Sources */,
 				90CD1BC5289C01B100D73A17 /* Extension.swift in Sources */,
 				90A837FB2899F7BA00D61D88 /* SceneDelegate.swift in Sources */,
 				90C21F16289C596500F1AF0F /* DetailTableViewController.swift in Sources */,
 				90A838112899F8A200D61D88 /* APIKey.swift in Sources */,
 				90A838172899FADD00D61D88 /* Exemple.swift in Sources */,
+				90C21F1D289E3F3600F1AF0F /* OverVeiwTableViewCell.swift in Sources */,
 				90A838132899F9DE00D61D88 /* Constant.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

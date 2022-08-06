@@ -7,83 +7,75 @@
 
 import UIKit
 
-class DetailTableViewController: UITableViewController {
+import Alamofire
+import SwiftyJSON
+import Kingfisher
 
+class DetailTableViewController: UITableViewController {
+   
+    @IBOutlet weak var backdropPathImage: UIImageView!
+    @IBOutlet weak var posterImage: UIImageView!
+    @IBOutlet weak var movieName: UILabel!
+    @IBOutlet weak var overView: UITextView!
+    
+    
+    var movieDataList: [MovieData]?
+    var castInfo: [CastData] = []
+    
     override func viewDidLoad() {
         super.viewDidLoad()
-
-        // Uncomment the following line to preserve selection between presentations
-        // self.clearsSelectionOnViewWillAppear = false
-
-        // Uncomment the following line to display an Edit button in the navigation bar for this view controller.
-        // self.navigationItem.rightBarButtonItem = self.editButtonItem
+//        requestPeopleData()
     }
-
-    // MARK: - Table view data source
-
+    
+    func requestPeopleData(movieID: Int) {
+        let url = APIKey.TMDBMOVIE + "\(movieID)" + "credits?api_key=" + APIKey.TMDBAPI_ID + "&language=en-US" // moviewID에 해당셀의 인덱스 걸어주기
+        
+        // Thread로
+        AF.request(url, method: .get).validate().responseData(queue: .global()) { response in
+            
+            switch response.result {
+            case .success(let value):
+                let json = JSON(value)
+                print("JSON: \(json)")
+                
+                for item in json["cast"].arrayValue {
+                    
+                    
+                    let name = item["name"].stringValue
+                    let image = APIKey.TMDBPOSTERIMAGE_W780 + item["profile_path"].stringValue
+                    let castImageURL = URL(string: image)
+                    let roleNickname = item["character"].stringValue
+                    
+                    self.castInfo.append(CastData(name: name, image: castImageURL!, roleNickname: roleNickname))
+                }
+                
+            case .failure(let error):
+                print(error)
+            }
+        }
+    }
+    
     override func numberOfSections(in tableView: UITableView) -> Int {
-        // #warning Incomplete implementation, return the number of sections
-        return 0
+        return 2
     }
-
-    override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        // #warning Incomplete implementation, return the number of rows
-        return 0
-    }
-
-    /*
-    override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCell(withIdentifier: "reuseIdentifier", for: indexPath)
-
-        // Configure the cell...
-
-        return cell
-    }
-    */
-
-    /*
-    // Override to support conditional editing of the table view.
-    override func tableView(_ tableView: UITableView, canEditRowAt indexPath: IndexPath) -> Bool {
-        // Return false if you do not want the specified item to be editable.
-        return true
-    }
-    */
-
-    /*
-    // Override to support editing the table view.
-    override func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCell.EditingStyle, forRowAt indexPath: IndexPath) {
-        if editingStyle == .delete {
-            // Delete the row from the data source
-            tableView.deleteRows(at: [indexPath], with: .fade)
-        } else if editingStyle == .insert {
-            // Create a new instance of the appropriate class, insert it into the array, and add a new row to the table view
-        }    
-    }
-    */
-
-    /*
-    // Override to support rearranging the table view.
-    override func tableView(_ tableView: UITableView, moveRowAt fromIndexPath: IndexPath, to: IndexPath) {
-
-    }
-    */
-
-    /*
-    // Override to support conditional rearranging of the table view.
-    override func tableView(_ tableView: UITableView, canMoveRowAt indexPath: IndexPath) -> Bool {
-        // Return false if you do not want the item to be re-orderable.
-        return true
-    }
-    */
-
-    /*
-    // MARK: - Navigation
-
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        // Get the new view controller using segue.destination.
-        // Pass the selected object to the new view controller.
-    }
-    */
-
+    
+        override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+            castInfo.count
+        }
+    
+        override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+            <#code#>
+        }
+    
+        override func tableView(_ tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
+            return section == 0 ? "OverView" : "Cast"
+        }
+    
+        override func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
+            return 80
+        }
+    
+//        override func tableView(_ tableView: UITableView, titleForFooterInSection section: Int) -> String? {
+//            <#code#>
+//        }
 }

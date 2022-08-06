@@ -69,6 +69,7 @@ class SearchViewController: UIViewController {
         }
     }
     
+    // cast정보로 overView 바꾸기 -> UserDefault
     func requestTMDBData() {
         let url = APIKey.TMDBAPI + APIKey.TMDBAPI_ID
         let formatter = DateFormatter()
@@ -81,17 +82,20 @@ class SearchViewController: UIViewController {
                 let json = JSON(value)
                 let statusCode = response.response?.statusCode ?? 404 // 이렇게 statusCode를 해결할 수 있음
                 print("JSON: \(json)")
-                print("\(json["results"].arrayValue.count)")
+//                print("\(json["results"].arrayValue.count)")
                 
                 for item in json["results"].arrayValue {
-                    let image = APIKey.TMDBIMAGE_W500 + item["poster_path"].stringValue
+                    let image = APIKey.TMDBPOSTERIMAGE_W780 + item["poster_path"].stringValue
                     let releaseDate = formatter.date(from: item["release_date"].stringValue)
                     let rate = item["vote_average"].doubleValue
                     let title = item["title"].stringValue
                     let overView = item["overview"].stringValue
                     let movieganre = item["genre_ids"].arrayValue[0].intValue
+                    let backdropPath = item["backdrop_path"].stringValue
+                    let id = item["id"].intValue
                     
-                    let data = MovieData(releaseDate: releaseDate ?? Date(), image: image, ganre: movieganre, rate: rate, title: title, overView: overView)
+                    // 값을 받음
+                    let data = MovieData(releaseDate: releaseDate ?? Date(), image: image, backdropPath: backdropPath, ganre: movieganre, rate: rate, title: title, overView: overView, id: id)
                     
                     self.list.append(data)
                     print(APIKey.TMDBGENRE)
@@ -146,6 +150,8 @@ extension SearchViewController: UICollectionViewDelegate, UICollectionViewDataSo
         let sb = UIStoryboard(name: "Main", bundle: nil)
         guard let vc = sb.instantiateViewController(withIdentifier: DetailTableViewController.reuseIdentifer) as? DetailTableViewController else { return }
         self.navigationController?.pushViewController(vc, animated: true)
+    
+        vc.movieDataList = list
     }
 }
 
@@ -155,9 +161,10 @@ extension SearchViewController: UICollectionViewDataSourcePrefetching {
     func collectionView(_ collectionView: UICollectionView, prefetchItemsAt indexPaths: [IndexPath]) {
         
         for indexPath in indexPaths {
-            if list.count == indexPath.item && list.count < totalCount {
-                startPage += 1 // 흠 셀의 크기가 너무 커서 하나마나인가..?
-                //추가 서버통신필요
+            if list.count - 1 == indexPath.item && list.count < totalCount {
+                startPage += 1
+                
+                requestTMDBData()
             }
         }
     }

@@ -9,15 +9,19 @@ import UIKit
 
 class DetailTableViewCell: UITableViewCell {
 
+    @IBOutlet weak var castImage: UIImageView!
+    @IBOutlet weak var castname: UILabel!
+    @IBOutlet weak var character: UILabel!
+    
     override func awakeFromNib() {
         super.awakeFromNib()
-        // Initialization code
+        
+        
+        
     }
-
-    override func setSelected(_ selected: Bool, animated: Bool) {
-        super.setSelected(selected, animated: animated)
-
-        // Configure the view for the selected state
+    
+    // 프로토콜로 만들기
+    func setfont() {
+        castname.
     }
-
 }
