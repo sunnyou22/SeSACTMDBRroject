@@ -16,12 +16,17 @@ class DetailTableViewCell: UITableViewCell {
     override func awakeFromNib() {
         super.awakeFromNib()
         
-        
-        
+        setfont()
     }
     
     // 프로토콜로 만들기
     func setfont() {
-        castname.
+        castname.font = .subTitleBoldFont18
+        character.font = .normalFont
+    }
+    
+    func setColor() {
+        castname.textColor = .black
+        character.textColor = .gray
     }
 }

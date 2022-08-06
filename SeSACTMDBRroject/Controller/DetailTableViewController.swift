@@ -24,11 +24,12 @@ class DetailTableViewController: UITableViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-//        requestPeopleData()
+        requestPeopleData()
     }
     
-    func requestPeopleData(movieID: Int) {
-        let url = APIKey.TMDBMOVIE + "\(movieID)" + "credits?api_key=" + APIKey.TMDBAPI_ID + "&language=en-US" // moviewID에 해당셀의 인덱스 걸어주기
+    func requestPeopleData() {
+        
+        let url = APIKey.TMDBMOVIE + "\(UserDefaultHelper.shared.movieID)" + "credits?api_key=" + APIKey.TMDBAPI_ID + "&language=en-US" // moviewID에 해당셀의 인덱스 걸어주기
         
         // Thread로
         AF.request(url, method: .get).validate().responseData(queue: .global()) { response in
@@ -49,6 +50,10 @@ class DetailTableViewController: UITableViewController {
                     self.castInfo.append(CastData(name: name, image: castImageURL!, roleNickname: roleNickname))
                 }
                 
+                DispatchQueue.main.async {
+                    self.tableView.reloadData()
+                }
+               
             case .failure(let error):
                 print(error)
             }
@@ -56,17 +61,39 @@ class DetailTableViewController: UITableViewController {
     }
     
     override func numberOfSections(in tableView: UITableView) -> Int {
-        return 2
+        return 1
     }
     
         override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-            castInfo.count
+            return  castInfo.count
+
         }
-    
+
         override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-            <#code#>
+            guard let cell = tableView.dequeueReusableCell(withIdentifier: DetailTableViewCell.reuseIdentifier, for: indexPath) as? DetailTableViewCell else {
+                return UITableViewCell()
+            }
+
+        
+            
+           if indexPath.section == 1 {
+               let castIndex = castInfo[indexPath.row]
+            // Kingfisher -> 쓰지않고 이미지 받아오기
+            cell.castImage.kf.setImage(with: castIndex.image)
+            cell.castname.text = castIndex.name
+            cell.character.text = castIndex.roleNickname
+               
+               
+//           } else {
+//               let castIndex = castInfo[indexPath.row]
+//                cell1.overview.text = castIndex.roleNickname // overView로 바구주기
+//
+//               return cell1
+            }
+            return cell
+            
         }
-    
+
         override func tableView(_ tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
             return section == 0 ? "OverView" : "Cast"
         }

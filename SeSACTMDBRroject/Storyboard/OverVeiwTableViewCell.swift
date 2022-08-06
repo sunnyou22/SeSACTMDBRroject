@@ -9,17 +9,12 @@ import UIKit
 
 class OverVeiwTableViewCell: UITableViewCell {
 
-    
+    @IBOutlet weak var overview: UITextView!
     
     override func awakeFromNib() {
         super.awakeFromNib()
-        // Initialization code
+      
+        overview.font = .normalFont
+        overview.textColor = .black
     }
-
-    override func setSelected(_ selected: Bool, animated: Bool) {
-        super.setSelected(selected, animated: animated)
-
-        // Configure the view for the selected state
-    }
-
 }

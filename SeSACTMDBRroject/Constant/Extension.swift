@@ -12,6 +12,8 @@ extension UIFont {
     static let systemBold20 = UIFont.boldSystemFont(ofSize: 20)
     static let dateFont = UIFont.systemFont(ofSize: 14)
     static let normalFont = UIFont.systemFont(ofSize: 14)
+    static let normalBoldFont = UIFont.boldSystemFont(ofSize: 14)
     static let titleFont20 = UIFont.systemFont(ofSize: 20)
     static let subTitleFont18 = UIFont.systemFont(ofSize: 18)
+    static let subTitleBoldFont18 = UIFont.boldSystemFont(ofSize:  18)
 }

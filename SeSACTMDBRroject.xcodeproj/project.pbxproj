@@ -109,7 +109,6 @@
 		90A838142899FA1500D61D88 /* Resource */ = {
 			isa = PBXGroup;
 			children = (
-				90A8382F289AD98000D61D88 /* Protocol.swift */,
 			);
 			path = Resource;
 			sourceTree = "<group>";
@@ -159,6 +158,7 @@
 				90C21F1A289D051000F1AF0F /* APIManager.swift */,
 				90CD1BC4289C01B100D73A17 /* Extension.swift */,
 				90C21F11289C287800F1AF0F /* Type.swift */,
+				90A8382F289AD98000D61D88 /* Protocol.swift */,
 			);
 			path = Constant;
 			sourceTree = "<group>";

@@ -28,7 +28,7 @@ class SearchViewController: UIViewController {
         collectionView.prefetchDataSource = self
         collectionView.delegate = self
         collectionView.dataSource = self
-        self.collectionView.register(UINib(nibName: CollectionViewCell.reuseIdentifer, bundle: nil), forCellWithReuseIdentifier: CollectionViewCell.reuseIdentifer)
+        self.collectionView.register(UINib(nibName: CollectionViewCell.reuseIdentifier, bundle: nil), forCellWithReuseIdentifier: CollectionViewCell.reuseIdentifier)
         
         //MARK: 네비
         navigationItem.title = "" // 첫 화면에 네비게이션 연결방법
@@ -127,7 +127,7 @@ extension SearchViewController: UICollectionViewDelegate, UICollectionViewDataSo
         let formatter = DateFormatter()
         formatter.locale = Locale(identifier: "ko_KR")
         formatter.dateFormat = "MM/dd/yyyy"
-        guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: CollectionViewCell.reuseIdentifer, for: indexPath) as? CollectionViewCell else {
+        guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: CollectionViewCell.reuseIdentifier, for: indexPath) as? CollectionViewCell else {
             return UICollectionViewCell()
         }
         // 장르불러오기
@@ -142,15 +142,16 @@ extension SearchViewController: UICollectionViewDelegate, UICollectionViewDataSo
         cell.movieTitle.text = movie.title
         cell.overview.text = movie.overView
         cell.ganre.text = ganrelist[movie.ganre] //악 됐다...
-       
+        
         return cell
     }
     
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
         let sb = UIStoryboard(name: "Main", bundle: nil)
-        guard let vc = sb.instantiateViewController(withIdentifier: DetailTableViewController.reuseIdentifer) as? DetailTableViewController else { return }
+        guard let vc = sb.instantiateViewController(withIdentifier: DetailTableViewController.reuseIdentifier) as? DetailTableViewController else { return }
         self.navigationController?.pushViewController(vc, animated: true)
-    
+        
+        UserDefaultHelper.shared.movieID = "\(list[indexPath.row].id)"
         vc.movieDataList = list
     }
 }

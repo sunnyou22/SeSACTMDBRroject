@@ -9,29 +9,29 @@ import Foundation
 import UIKit
 
 protocol ReusableIdentifier {
-    static var reuseIdentifer: String { get }
+    static var reuseIdentifier: String { get }
 }
 
 extension UIViewController: ReusableIdentifier {
-    static var reuseIdentifer: String {
+    static var reuseIdentifier: String {
         return String(describing: self)
     }
 }
 
 extension CollectionViewCell: ReusableIdentifier {
-    static var reuseIdentifer: String {
+    static var reuseIdentifier: String {
         return String(describing: self)
     }
 }
 
 extension DetailTableViewCell: ReusableIdentifier {
-    static var reuseIdentifer: String {
+    static var reuseIdentifier: String {
         return String(describing: self)
     }
 }
-//
-//extension DetailTableViewController: ReusableIdentifier {
-//    static var reuseIdentifer: String {
-//        return String(describing: self)
-//    }
-//}
+
+extension OverVeiwTableViewCell: ReusableIdentifier {
+    static var reuseIdentifier: String {
+        return String(describing: self)
+    }
+}

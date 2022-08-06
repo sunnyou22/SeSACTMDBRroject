@@ -24,3 +24,23 @@ struct CastData {
     var image: URL
     var roleNickname: String
 }
+
+class UserDefaultHelper {
+    private init() { } // 외부사용 막고
+    
+    static let shared = UserDefaultHelper()
+    
+    enum Key: String {
+        case movieID
+    }
+    
+    let userDefaults = UserDefaults.standard
+    var movieID: String {
+        get {
+            return userDefaults.string(forKey: Key.movieID.rawValue) ?? "0"
+        }
+        set {
+            userDefaults.set(newValue, forKey: Key.movieID.rawValue)
+        }
+    }
+}
