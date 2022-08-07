@@ -18,17 +18,19 @@ class DetailTableViewController: UITableViewController {
     @IBOutlet weak var movieName: UILabel!
     
 //    
-//    var movieDataList: [MovieData]?
-    var movieDetailData: [MovieDetail] = []
+    var movieDataList: MovieData?
     var castInfo: [CastData] = []
     
     override func viewDidLoad() {
         super.viewDidLoad()
         
         requestPeopleData()
-        fetchMovieDetail()
+        backdropPathImage.kf.setImage(with: URL(string: movieDataList!.backdropPath))
+        backdropPathImage.contentMode = .scaleToFill
+        posterImage.kf.setImage(with: URL(string: movieDataList!.image))
+        posterImage.contentMode = .scaleToFill
+        movieName.text = movieDataList?.title
         
-       
         tableView.separatorInset.left = 20
         
         
@@ -75,7 +77,7 @@ class DetailTableViewController: UITableViewController {
             }
             
             cell2.setFont()
-            cell2.overview.text = overview ?? "null"
+            cell2.overview.text = movieDataList?.overView ?? "null"
             
             return cell2
         }
@@ -121,29 +123,5 @@ class DetailTableViewController: UITableViewController {
             }
         }
     }
-        
-        func fetchMovieDetail() {
-            let url = APIKey.TMDBMOVIE + UserDefaultHelper.shared.movieID + "?api_key=" + APIKey.TMDBAPI_ID + "&language=en-US"
-            print(url)
-            AF.request(url, method: .get).validate().responseData { response in
-                switch response.result {
-                case .success(let value):
-                    let json = JSON(value)
-                    print("JSON: \(json)")
-                    
-                 
-                     let overview = json["overview"].stringValue
-                    let backdropPath = json [""]
-                    
-                    
-                    print(self.overview)
-                    
-                    self.tableView.reloadData()
-                case .failure(let error):
-                    print(error)
-                }
-                
-            }
-        }
     }
 

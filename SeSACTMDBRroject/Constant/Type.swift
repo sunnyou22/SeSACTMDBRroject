@@ -25,11 +25,12 @@ struct CastData {
     var roleNickname: String
 }
 
-struct MovieDetail {
-    var overview: String
-    var posterImage: String
-    var backdropPath: String
-}
+//struct MovieDetail {
+//    var name
+//    var overview: String
+//    var posterImage: String
+//    var backdropPath: String
+//}
 
 class UserDefaultHelper {
     private init() { } // 외부사용 막고

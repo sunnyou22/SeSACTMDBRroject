@@ -83,7 +83,7 @@ class CollectionViewCell: UICollectionViewCell {
     func configureButtonUI() {
         clipButton.setImage(UIImage(systemName: "paperclip"), for: .normal)
         clipButton.clipsToBounds = true
-        clipButton.layer.cornerRadius = clipButton.bounds.height / 2.5
+        clipButton.layer.cornerRadius = clipButton.bounds.height / 3.2
         clipButton.tintColor = .black
         clipButton.backgroundColor = .white
         forDetailButton.setImage(UIImage(systemName: "chevron.forward"), for: .normal)

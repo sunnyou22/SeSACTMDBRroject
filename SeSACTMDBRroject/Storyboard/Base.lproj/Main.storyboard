@@ -129,22 +129,22 @@
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                         <color key="separatorColor" red="0.67043448920000004" green="0.67043448920000004" blue="0.67043448920000004" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
                         <view key="tableHeaderView" contentMode="scaleToFill" id="Wv2-YW-0gP">
-                            <rect key="frame" x="0.0" y="0.0" width="414" height="250"/>
+                            <rect key="frame" x="0.0" y="0.0" width="414" height="234"/>
                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                             <subviews>
                                 <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="Qjt-yq-Uhr">
-                                    <rect key="frame" x="0.0" y="0.0" width="414" height="250"/>
-                                    <color key="backgroundColor" red="0.84258943799999997" green="0.65517644320000001" blue="0.68564432340000003" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
+                                    <rect key="frame" x="0.0" y="0.0" width="414" height="234"/>
+                                    <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 </imageView>
                                 <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="eFG-c5-0eN">
-                                    <rect key="frame" x="16" y="67.5" width="125.5" height="166.5"/>
+                                    <rect key="frame" x="16" y="51.5" width="125.5" height="166.5"/>
                                     <color key="backgroundColor" systemColor="linkColor"/>
                                     <constraints>
                                         <constraint firstAttribute="width" secondItem="eFG-c5-0eN" secondAttribute="height" multiplier="110:146" id="r8N-Ag-C1h"/>
                                     </constraints>
                                 </imageView>
                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="LabelLabelLabel" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="f7a-jD-Qxk">
-                                    <rect key="frame" x="157.5" y="213.5" width="124" height="20.5"/>
+                                    <rect key="frame" x="157.5" y="197.5" width="124" height="20.5"/>
                                     <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                     <nil key="textColor"/>
                                     <nil key="highlightedColor"/>
@@ -165,7 +165,7 @@
                         </view>
                         <prototypes>
                             <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="OverVeiwTableViewCell" rowHeight="105" id="Igi-HO-gin" customClass="OverVeiwTableViewCell" customModule="SeSACTMDBRroject" customModuleProvider="target">
-                                <rect key="frame" x="0.0" y="299.5" width="414" height="105"/>
+                                <rect key="frame" x="0.0" y="283.5" width="414" height="105"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="Igi-HO-gin" id="krF-Qb-Zdd">
                                     <rect key="frame" x="0.0" y="0.0" width="414" height="105"/>
@@ -193,7 +193,7 @@
                                 </connections>
                             </tableViewCell>
                             <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="DetailTableViewCell" rowHeight="110" id="sgm-Iu-Elz" customClass="DetailTableViewCell" customModule="SeSACTMDBRroject" customModuleProvider="target">
-                                <rect key="frame" x="0.0" y="404.5" width="414" height="110"/>
+                                <rect key="frame" x="0.0" y="388.5" width="414" height="110"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="sgm-Iu-Elz" id="VbJ-Gc-tS3">
                                     <rect key="frame" x="0.0" y="0.0" width="414" height="110"/>

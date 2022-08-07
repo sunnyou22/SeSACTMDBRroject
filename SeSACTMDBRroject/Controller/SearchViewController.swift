@@ -91,7 +91,7 @@ class SearchViewController: UIViewController {
                     let title = item["title"].stringValue
                     let overView = item["overview"].stringValue
                     let movieganre = item["genre_ids"].arrayValue[0].intValue
-                    let backdropPath = item["backdrop_path"].stringValue
+                    let backdropPath = APIKey.TMDBPOSTERIMAGE_W780 + item["backdrop_path"].stringValue
                     let id = item["id"].intValue
                     
                     // 값을 받음
@@ -152,7 +152,7 @@ extension SearchViewController: UICollectionViewDelegate, UICollectionViewDataSo
         self.navigationController?.pushViewController(vc, animated: true)
         
         UserDefaultHelper.shared.movieID = "\(list[indexPath.row].id)"
-//        vc.movieDataList = list
+        vc.movieDataList = list[indexPath.row]
     }
 }
 
