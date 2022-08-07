@@ -260,9 +260,31 @@
                     <view key="view" contentMode="scaleToFill" id="gYS-fJ-HZO">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <wkWebView contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="xiJ-qz-g8g">
+                                <rect key="frame" x="0.0" y="44" width="414" height="818"/>
+                                <color key="backgroundColor" red="0.36078431370000003" green="0.38823529410000002" blue="0.4039215686" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                <wkWebViewConfiguration key="configuration">
+                                    <audiovisualMediaTypes key="mediaTypesRequiringUserActionForPlayback" none="YES"/>
+                                    <wkPreferences key="preferences"/>
+                                </wkWebViewConfiguration>
+                            </wkWebView>
+                        </subviews>
                         <viewLayoutGuide key="safeArea" id="VXs-zM-Yqx"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                        <constraints>
+                            <constraint firstItem="xiJ-qz-g8g" firstAttribute="leading" secondItem="VXs-zM-Yqx" secondAttribute="leading" id="52W-Kt-xAY"/>
+                            <constraint firstItem="xiJ-qz-g8g" firstAttribute="trailing" secondItem="VXs-zM-Yqx" secondAttribute="trailing" id="5I2-Gj-gvp"/>
+                            <constraint firstItem="xiJ-qz-g8g" firstAttribute="top" secondItem="VXs-zM-Yqx" secondAttribute="top" id="9So-kE-3qm"/>
+                            <constraint firstItem="VXs-zM-Yqx" firstAttribute="bottom" secondItem="xiJ-qz-g8g" secondAttribute="bottom" id="SKv-gO-Ygc"/>
+                            <constraint firstItem="xiJ-qz-g8g" firstAttribute="top" secondItem="VXs-zM-Yqx" secondAttribute="top" id="Y7E-W0-ePl"/>
+                            <constraint firstItem="xiJ-qz-g8g" firstAttribute="leading" secondItem="VXs-zM-Yqx" secondAttribute="leading" id="dJv-ih-PZX"/>
+                            <constraint firstItem="VXs-zM-Yqx" firstAttribute="trailing" secondItem="xiJ-qz-g8g" secondAttribute="trailing" id="y00-ol-eTM"/>
+                        </constraints>
                     </view>
+                    <connections>
+                        <outlet property="webview" destination="xiJ-qz-g8g" id="Qpb-j7-A6G"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="okC-h9-qNq" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
