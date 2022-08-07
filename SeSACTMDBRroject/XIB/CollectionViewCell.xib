@@ -94,10 +94,11 @@
                                 <nil key="highlightedColor"/>
                             </label>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="j18-U8-hMU">
-                                <rect key="frame" x="480" y="16" width="55" height="55"/>
+                                <rect key="frame" x="485" y="16" width="50" height="50"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <constraints>
-                                    <constraint firstAttribute="width" secondItem="j18-U8-hMU" secondAttribute="height" id="24e-Wi-Fqw"/>
+                                    <constraint firstAttribute="width" constant="50" id="14r-jA-Lb7"/>
+                                    <constraint firstAttribute="width" secondItem="j18-U8-hMU" secondAttribute="height" multiplier="1:1" id="Reg-HH-SCb"/>
                                 </constraints>
                                 <inset key="imageEdgeInsets" minX="0.0" minY="0.0" maxX="2.2250738585072014e-308" maxY="0.0"/>
                                 <state key="normal" image="paperclip" catalog="system"/>
@@ -130,7 +131,6 @@
                             <constraint firstAttribute="trailing" secondItem="mkE-sz-U5c" secondAttribute="trailing" id="Otq-JA-SQF"/>
                             <constraint firstItem="nPL-df-GIf" firstAttribute="height" secondItem="eer-Jo-dTr" secondAttribute="height" multiplier="0.13038" id="T41-kE-mW4"/>
                             <constraint firstItem="yBD-N1-8Q6" firstAttribute="leading" secondItem="mkE-sz-U5c" secondAttribute="leading" constant="16" id="YvY-dp-axh"/>
-                            <constraint firstItem="j18-U8-hMU" firstAttribute="width" secondItem="mkE-sz-U5c" secondAttribute="width" multiplier="0.1" id="acL-td-jbR"/>
                             <constraint firstItem="j18-U8-hMU" firstAttribute="top" secondItem="mkE-sz-U5c" secondAttribute="top" constant="16" id="fGH-Cb-ZiL"/>
                             <constraint firstItem="UTk-0U-yDR" firstAttribute="leading" secondItem="eer-Jo-dTr" secondAttribute="leading" constant="16" id="fT7-Fe-CNo"/>
                             <constraint firstItem="mkE-sz-U5c" firstAttribute="trailing" secondItem="j18-U8-hMU" secondAttribute="trailing" constant="16" id="fwu-GK-vXv"/>

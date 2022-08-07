@@ -150,9 +150,17 @@ extension SearchViewController: UICollectionViewDelegate, UICollectionViewDataSo
         cell.movieTitle.text = movie.title
         cell.overview.text = movie.overView
         cell.ganre.text = ganrelist[movie.ganre] //악 됐다...
+        cell.clipButton.addTarget(self, action: #selector(goClipLink), for: .touchUpInside)
         
         return cell
     }
+
+@objc
+func goClipLink() {
+    let sb = UIStoryboard(name: "Main", bundle: nil)
+    guard let vc = sb.instantiateViewController(withIdentifier: WebViewController.reuseIdentifier) as? WebViewController else { return }
+    self.navigationController?.pushViewController(vc, animated: true)
+}
     
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
         let sb = UIStoryboard(name: "Main", bundle: nil)

@@ -17,23 +17,16 @@ class DetailTableViewController: UITableViewController {
     @IBOutlet weak var posterImage: UIImageView!
     @IBOutlet weak var movieName: UILabel!
     
-//    
+    //
     var movieDataList: MovieData?
     var castInfo: [CastData] = []
+    var statPage = 1
     
     override func viewDidLoad() {
         super.viewDidLoad()
         
         requestPeopleData()
-        backdropPathImage.kf.setImage(with: URL(string: movieDataList!.backdropPath))
-        backdropPathImage.contentMode = .scaleToFill
-        posterImage.kf.setImage(with: URL(string: movieDataList!.image))
-        posterImage.contentMode = .scaleToFill
-        movieName.text = movieDataList?.title
-        movieName.textColor = .white
-        movieName.font = .systemBold20
-        
-        tableView.separatorInset
+        setCell()
     }
     
     override func numberOfSections(in tableView: UITableView) -> Int {
@@ -126,5 +119,13 @@ class DetailTableViewController: UITableViewController {
             }
         }
     }
+    func setCell() {
+        backdropPathImage.kf.setImage(with: URL(string: movieDataList!.backdropPath))
+        backdropPathImage.contentMode = .scaleToFill
+        posterImage.kf.setImage(with: URL(string: movieDataList!.image))
+        posterImage.contentMode = .scaleToFill
+        movieName.text = movieDataList?.title
+        movieName.textColor = .white
+        movieName.font = .systemBold20
     }
-
+}
