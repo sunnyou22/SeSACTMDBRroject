@@ -11,8 +11,7 @@ class OverVeiwTableViewCell: UITableViewCell {
 
     @IBOutlet weak var overview: UITextView!
     
-    override func awakeFromNib() {
-        super.awakeFromNib()
+    func setFont() {
       
         overview.font = .normalFont
         overview.textColor = .black

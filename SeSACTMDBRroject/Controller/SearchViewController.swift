@@ -152,7 +152,7 @@ extension SearchViewController: UICollectionViewDelegate, UICollectionViewDataSo
         self.navigationController?.pushViewController(vc, animated: true)
         
         UserDefaultHelper.shared.movieID = "\(list[indexPath.row].id)"
-        vc.movieDataList = list
+//        vc.movieDataList = list
     }
 }
 

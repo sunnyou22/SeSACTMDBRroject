@@ -13,12 +13,6 @@ class DetailTableViewCell: UITableViewCell {
     @IBOutlet weak var castname: UILabel!
     @IBOutlet weak var character: UILabel!
     
-    override func awakeFromNib() {
-        super.awakeFromNib()
-        
-        setfont()
-    }
-    
     // 프로토콜로 만들기
     func setfont() {
         castname.font = .subTitleBoldFont18

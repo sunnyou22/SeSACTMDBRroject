@@ -11,7 +11,7 @@ import Foundation
 struct MovieData {
     var releaseDate: Date
     var image: String
-    var backdropPath: String
+    var backdropPath: String // 굳이 필요할까
     var ganre: Int
     var rate: Double
     var title: String
@@ -23,6 +23,12 @@ struct CastData {
     var name: String
     var image: URL
     var roleNickname: String
+}
+
+struct MovieDetail {
+    var overview: String
+    var posterImage: String
+    var backdropPath: String
 }
 
 class UserDefaultHelper {
