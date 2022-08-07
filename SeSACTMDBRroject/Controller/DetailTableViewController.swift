@@ -30,10 +30,10 @@ class DetailTableViewController: UITableViewController {
         posterImage.kf.setImage(with: URL(string: movieDataList!.image))
         posterImage.contentMode = .scaleToFill
         movieName.text = movieDataList?.title
+        movieName.textColor = .white
+        movieName.font = .systemBold20
         
-        tableView.separatorInset.left = 20
-        
-        
+        tableView.separatorInset
     }
     
     override func numberOfSections(in tableView: UITableView) -> Int {
@@ -63,12 +63,12 @@ class DetailTableViewController: UITableViewController {
             }
             cell.setfont()
             cell.setColor()
+            cell.castImage.layer.cornerRadius = 10
             // Kingfisher -> 쓰지않고 이미지 받아오기
             cell.castImage.kf.setImage(with: castIndex.image)
             cell.castname.text = castIndex.name
             cell.character.text = castIndex.roleNickname
-            cell.separatorInset = UIEdgeInsets(top: 0, left: 20, bottom: 0, right: 0)
-            
+            cell.separatorInset = UIEdgeInsets(top: 0, left: 20, bottom: 0, right: 0) // 적용안됨
             return cell
             
         } else if indexPath.section == 0 {
@@ -78,7 +78,6 @@ class DetailTableViewController: UITableViewController {
             
             cell2.setFont()
             cell2.overview.text = movieDataList?.overView ?? "null"
-            
             return cell2
         }
         return UITableViewCell()
@@ -90,6 +89,10 @@ class DetailTableViewController: UITableViewController {
     
     override func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
         return 80
+    }
+    
+    override func tableView(_ tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
+        return 50
     }
     
     func requestPeopleData() {

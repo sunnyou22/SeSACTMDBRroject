@@ -69,12 +69,22 @@ class SearchViewController: UIViewController {
         }
     }
     
+    func changeDate(date: String) -> String { // 순서대로 함수 진행
+        let formatter = DateFormatter()
+        formatter.locale = Locale(identifier: "ko_KR")
+        formatter.dateFormat = "yyyy-MM-dd"
+        
+        let date = formatter.date(from: date)
+        formatter.dateFormat = "MM/dd/yyyy"
+        
+        let resultDate = formatter.string(from: date!)
+        
+        return resultDate
+    }
+    
     // cast정보로 overView 바꾸기 -> UserDefault
     func requestTMDBData() {
         let url = APIKey.TMDBAPI + APIKey.TMDBAPI_ID
-        let formatter = DateFormatter()
-        formatter.locale = Locale(identifier: "ko_KR")
-        formatter.dateFormat = "MM/dd/yyyy"
         AF.request(url, method: .get).validate(statusCode: 200...404).responseData { response in
             
             switch response.result {
@@ -86,16 +96,16 @@ class SearchViewController: UIViewController {
                 
                 for item in json["results"].arrayValue {
                     let image = APIKey.TMDBPOSTERIMAGE_W780 + item["poster_path"].stringValue
-                    let releaseDate = formatter.date(from: item["release_date"].stringValue)
+                    let releaseDate = item["release_date"].stringValue
                     let rate = item["vote_average"].doubleValue
                     let title = item["title"].stringValue
                     let overView = item["overview"].stringValue
                     let movieganre = item["genre_ids"].arrayValue[0].intValue
-                    let backdropPath = APIKey.TMDBPOSTERIMAGE_W780 + item["backdrop_path"].stringValue
+                    let backdropPath =  item["backdrop_path"].stringValue
                     let id = item["id"].intValue
                     
                     // 값을 받음
-                    let data = MovieData(releaseDate: releaseDate ?? Date(), image: image, backdropPath: backdropPath, ganre: movieganre, rate: rate, title: title, overView: overView, id: id)
+                    let data = MovieData(releaseDate: releaseDate, image: image, backdropPath: backdropPath, ganre: movieganre, rate: rate, title: title, overView: overView, id: id)
                     
                     self.list.append(data)
                     print(APIKey.TMDBGENRE)
@@ -124,9 +134,7 @@ extension SearchViewController: UICollectionViewDelegate, UICollectionViewDataSo
     }
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
-        let formatter = DateFormatter()
-        formatter.locale = Locale(identifier: "ko_KR")
-        formatter.dateFormat = "MM/dd/yyyy"
+       
         guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: CollectionViewCell.reuseIdentifier, for: indexPath) as? CollectionViewCell else {
             return UICollectionViewCell()
         }
@@ -137,7 +145,7 @@ extension SearchViewController: UICollectionViewDelegate, UICollectionViewDataSo
         let movie = list[indexPath.row]
         
         cell.posterImage.kf.setImage(with: url)
-        cell.releaseDateLabel.text = formatter.string(from: movie.releaseDate)
+        cell.releaseDateLabel.text = changeDate(date: movie.releaseDate)
         cell.rateNumberLabel.text = String(round((movie.rate * digit) / digit))
         cell.movieTitle.text = movie.title
         cell.overview.text = movie.overView

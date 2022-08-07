@@ -9,7 +9,7 @@ import Foundation
 
 
 struct MovieData {
-    var releaseDate: Date
+    var releaseDate: String
     var image: String
     var backdropPath: String // 굳이 필요할까
     var ganre: Int

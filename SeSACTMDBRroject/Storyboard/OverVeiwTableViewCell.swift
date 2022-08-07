@@ -9,10 +9,9 @@ import UIKit
 
 class OverVeiwTableViewCell: UITableViewCell {
 
-    @IBOutlet weak var overview: UITextView!
+    @IBOutlet weak var overview: UILabel!
     
     func setFont() {
-      
         overview.font = .normalFont
         overview.textColor = .black
     }
