@@ -54,7 +54,7 @@
 		90C21F11289C287800F1AF0F /* Type.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Type.swift; sourceTree = "<group>"; };
 		90C21F13289C58AB00F1AF0F /* DetailTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailTableViewCell.swift; sourceTree = "<group>"; };
 		90C21F15289C596500F1AF0F /* DetailTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailTableViewController.swift; sourceTree = "<group>"; };
-		90C21F1A289D051000F1AF0F /* APIManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = APIManager.swift; path = SeSACTMDBRroject/Key/APIManager.swift; sourceTree = SOURCE_ROOT; };
+		90C21F1A289D051000F1AF0F /* APIManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = APIManager.swift; path = SeSACTMDBRroject/Network/APIManager.swift; sourceTree = SOURCE_ROOT; };
 		90C21F1C289E3F3600F1AF0F /* OverVeiwTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = OverVeiwTableViewCell.swift; path = SeSACTMDBRroject/Search/OverVeiwTableViewCell.swift; sourceTree = SOURCE_ROOT; };
 		90CD1BC4289C01B100D73A17 /* Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Extension.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -100,6 +100,14 @@
 			path = Search;
 			sourceTree = "<group>";
 		};
+		908A099C28A19FB60087BA2F /* Network */ = {
+			isa = PBXGroup;
+			children = (
+				90C21F1A289D051000F1AF0F /* APIManager.swift */,
+			);
+			path = Network;
+			sourceTree = "<group>";
+		};
 		90A837EC2899F7B900D61D88 = {
 			isa = PBXGroup;
 			children = (
@@ -141,6 +149,7 @@
 		90A838142899FA1500D61D88 /* Resource */ = {
 			isa = PBXGroup;
 			children = (
+				908A099C28A19FB60087BA2F /* Network */,
 			);
 			path = Resource;
 			sourceTree = "<group>";
@@ -182,7 +191,6 @@
 		90CD1BC3289C018200D73A17 /* Constant */ = {
 			isa = PBXGroup;
 			children = (
-				90C21F1A289D051000F1AF0F /* APIManager.swift */,
 				90CD1BC4289C01B100D73A17 /* Extension.swift */,
 				90C21F11289C287800F1AF0F /* Type.swift */,
 				90A8382F289AD98000D61D88 /* Protocol.swift */,
