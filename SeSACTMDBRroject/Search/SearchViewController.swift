@@ -95,13 +95,13 @@ class SearchViewController: UIViewController {
 //                print("\(json["results"].arrayValue.count)")
                 
                 for item in json["results"].arrayValue {
-                    let image = APIKey.TMDBPOSTERIMAGE_W780 + item["poster_path"].stringValue
+                    let image = APIKey.TMDBBACGROUNDIMAGE_W500 + item["poster_path"].stringValue
                     let releaseDate = item["release_date"].stringValue
                     let rate = item["vote_average"].doubleValue
                     let title = item["title"].stringValue
                     let overView = item["overview"].stringValue
                     let movieganre = item["genre_ids"].arrayValue[0].intValue
-                    let backdropPath =  item["backdrop_path"].stringValue
+                    let backdropPath = APIKey.TMDBPOSTERIMAGE_W780 + item["backdrop_path"].stringValue
                     let id = item["id"].intValue
                     
                     // 값을 받음

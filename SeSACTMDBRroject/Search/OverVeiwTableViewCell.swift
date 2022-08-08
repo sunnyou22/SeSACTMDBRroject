@@ -15,4 +15,9 @@ class OverVeiwTableViewCell: UITableViewCell {
         overview.font = .normalFont
         overview.textColor = .black
     }
+    
+    func setSeparatorInset() {
+        self.layoutMargins = UIEdgeInsets(top: 0, left: 20, bottom: 0, right: 0)
+        self.separatorInset = UIEdgeInsets(top: 0, left: 20, bottom: 0, right: 0)
+    }
 }

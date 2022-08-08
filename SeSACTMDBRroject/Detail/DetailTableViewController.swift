@@ -11,6 +11,8 @@ import Alamofire
 import SwiftyJSON
 import Kingfisher
 
+
+// 로우한 값들 수정하기
 class DetailTableViewController: UITableViewController {
     
     @IBOutlet weak var backdropPathImage: UIImageView!
@@ -24,9 +26,9 @@ class DetailTableViewController: UITableViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        
+       
         requestPeopleData()
-        setCell()
+        setViewConfiguration()
     }
     
     override func numberOfSections(in tableView: UITableView) -> Int {
@@ -34,20 +36,10 @@ class DetailTableViewController: UITableViewController {
     }
     
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        print(section)
-        
-        if section == 0 {
-            return 1
-        } else {
-            return castInfo.count
-        }
+        return section == 0 ? 1 : castInfo.count
     }
     
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        
-        // 하나의 셀을 계속 반복하면서 그려줌 Cellforrowat에서는 어떤 셀이든 castinfo 인덱스를 호출하고 있어서 섹션 내 셀 갯수와 셀 데이터가 맞지 않아 보여요 선우님
-        
-        // 해당셀에 이미 셀의 갯수를 정해놓은 상황, 그 인덱스에 맞는 정보를 매칭해서 셀에 그려주려고함. 근데 castinfo를 섹션 안의 갯수와 맞지 않게 0번에서 불러주고있기 때문에 인덱스 오류가 난 것
         
         if indexPath.section == 1 {
             let castIndex = castInfo[indexPath.row]
@@ -61,7 +53,8 @@ class DetailTableViewController: UITableViewController {
             cell.castImage.kf.setImage(with: castIndex.image)
             cell.castname.text = castIndex.name
             cell.character.text = castIndex.roleNickname
-            cell.separatorInset = UIEdgeInsets(top: 0, left: 20, bottom: 0, right: 0) // 적용안됨
+            cell.setSeparatorInset()
+            
             return cell
             
         } else if indexPath.section == 0 {
@@ -71,6 +64,7 @@ class DetailTableViewController: UITableViewController {
             
             cell2.setFont()
             cell2.overview.text = movieDataList?.overView ?? "null"
+            cell2.setSeparatorInset()
             return cell2
         }
         return UITableViewCell()
@@ -88,6 +82,7 @@ class DetailTableViewController: UITableViewController {
         return 50
     }
     
+
     func requestPeopleData() {
         
         let url = APIKey.TMDBMOVIE + "\(UserDefaultHelper.shared.movieID)" + "/credits?api_key=" + APIKey.TMDBAPI_ID + "&language=en-US" // moviewID에 해당셀의 인덱스 걸어주기
@@ -109,7 +104,6 @@ class DetailTableViewController: UITableViewController {
                     let roleNickname = item["character"].stringValue
                     
                     self.castInfo.append(CastData(name: name, image: castImageURL!, roleNickname: roleNickname))
-                    print(self.castInfo.count)
                 }
                 
                 self.tableView.reloadData()
@@ -119,10 +113,14 @@ class DetailTableViewController: UITableViewController {
             }
         }
     }
-    func setCell() {
+    
+    func setViewConfiguration() {
+        tableView.separatorInset = UIEdgeInsets(top: 0, left: 20, bottom: 0, right: 0)
         backdropPathImage.kf.setImage(with: URL(string: movieDataList!.backdropPath))
+        print(movieDataList!.backdropPath,"-------------")
         backdropPathImage.contentMode = .scaleToFill
         posterImage.kf.setImage(with: URL(string: movieDataList!.image))
+        print(movieDataList!.image)
         posterImage.contentMode = .scaleToFill
         movieName.text = movieDataList?.title
         movieName.textColor = .white

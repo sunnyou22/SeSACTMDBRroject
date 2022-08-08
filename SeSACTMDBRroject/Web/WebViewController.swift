@@ -87,7 +87,7 @@ openWebPage(urlstr: destinationURL)
                 let json = JSON(value)
                 print("JSON: \(json)")
              
-                destinationURL = json["results"].map { $0["key"].st                }
+//                destinationURL = json["results"].map { $0["key"].st                }
                 
             case .failure(let error):
                 print(error)
