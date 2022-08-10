@@ -450,7 +450,7 @@
                             </tableView>
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="czF-ID-ceA"/>
-                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                        <color key="backgroundColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <constraints>
                             <constraint firstItem="y2v-fy-QiK" firstAttribute="leading" secondItem="czF-ID-ceA" secondAttribute="leading" id="1on-uG-6VR"/>
                             <constraint firstItem="czF-ID-ceA" firstAttribute="trailing" secondItem="tbO-4L-QAB" secondAttribute="trailing" id="1yJ-82-1A8"/>

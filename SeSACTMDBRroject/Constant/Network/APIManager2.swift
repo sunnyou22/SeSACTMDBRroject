@@ -30,8 +30,9 @@ import Foundation
          }
      }
      
-     func callRecommandRequest(completionHandler: @escaping ([String]) -> ()) {
-         let url = APIKey.TMDBMOVIE + UserDefaultHelper.shared.movieID + "/recommendations?api_key=" + APIKey.TMDBAPI_ID + "&language=en-US&page=1"
+     //MARK: 상세화면에서 추천 영화 뜨게하기
+     func callRecommandRequest(url: String, completionHandler: @escaping ([String]) -> ()) {
+         let url = url
          AF.request(url, method: .get).validate().responseData(queue: .global()) { response in
              switch response.result {
              case .success(let value):
@@ -48,9 +49,9 @@ import Foundation
          }
      }
      
-     func requestRecommandPostImage(completionHandler: @escaping ([String]) -> ()) {
+     func requestRecommandPostImage(url: String, completionHandler: @escaping ([String]) -> ()) {
          var posterImageList: [String] = []
-         callRecommandRequest { imageList in
+         callRecommandRequest(url: url) { imageList in
            posterImageList = imageList.map { APIKey.TMDBBACGROUNDIMAGE_W500 + $0 }
              completionHandler(posterImageList)
              }

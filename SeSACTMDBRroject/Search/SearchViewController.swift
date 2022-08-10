@@ -31,8 +31,8 @@ class SearchViewController: UIViewController {
         self.collectionView.register(UINib(nibName: CollectionViewCell.reuseIdentifier, bundle: nil), forCellWithReuseIdentifier: CollectionViewCell.reuseIdentifier)
         
         //MARK: 네비
-        navigationItem.title = "" // 첫 화면에 네비게이션 연결방법
-        navigationItem.leftBarButtonItem = UIBarButtonItem(image: UIImage(systemName: "list.triangle"), style: .plain, target: self, action: nil)
+        navigationItem.title = "MOVIE" // 첫 화면에 네비게이션 연결방법
+        navigationItem.leftBarButtonItem = UIBarButtonItem(image: UIImage(systemName: "list.triangle"), style: .plain, target: self, action: #selector(goMain))
         navigationItem.rightBarButtonItem = UIBarButtonItem(image: UIImage(systemName: "magnifyingglass"), style: .plain, target: self, action: nil) // 검색바 나오는 액션...
         let barAppearance = UINavigationBarAppearance()
         barAppearance.backgroundColor = .systemBackground
@@ -45,35 +45,15 @@ class SearchViewController: UIViewController {
         requestGanre() //1, 서버통신 2.데이터를 가져왔는지 , 3. 데이터 형태확인
     }
     
-    func requestGanre() {
+    @objc
+    func goMain() {
+        let sb = UIStoryboard(name: "Main", bundle: nil)
+        guard let vc = sb.instantiateViewController(withIdentifier: MainViewController.reuseIdentifier) as? MainViewController else { return }
         
-        TrendManager.shared.callRequest(url: APIKey.TMDBGENRE) { json in
-            print(json["genres"].arrayValue.count)
-            
-            for i in json["genres"].arrayValue {
-                let ganreID = i["id"].intValue
-                let ganreName = i["name"].stringValue
-                self.ganrelist.updateValue(ganreName, forKey: ganreID)
-                self.idList.append(ganreID)
-            }
-            DispatchQueue.main.async {
-                self.collectionView.reloadData()
-            }
-        }
-    }
-    
-    //날짜 계산
-    func changeDate(date: String) -> String { // 순서대로 함수 진행
-        let formatter = DateFormatter()
-        formatter.locale = Locale(identifier: "ko_KR")
-        formatter.dateFormat = "yyyy-MM-dd"
-        
-        let date = formatter.date(from: date)
-        formatter.dateFormat = "MM/dd/yyyy"
-        
-        let resultDate = formatter.string(from: date!)
-        
-        return resultDate
+//        vc.modalPresentationStyle = .fullScreen
+//        present(vc, animated: true)
+          
+        self.navigationController?.pushViewController(vc, animated: true)
     }
     
     // cast정보로 overView 바꾸기 -> UserDefault
@@ -105,6 +85,37 @@ class SearchViewController: UIViewController {
                 self.collectionView.reloadData()
             }
         }
+    }
+    
+    func requestGanre() {
+        
+        TrendManager.shared.callRequest(url: APIKey.TMDBGENRE) { json in
+            print(json["genres"].arrayValue.count)
+            
+            for i in json["genres"].arrayValue {
+                let ganreID = i["id"].intValue
+                let ganreName = i["name"].stringValue
+                self.ganrelist.updateValue(ganreName, forKey: ganreID)
+                self.idList.append(ganreID)
+            }
+            DispatchQueue.main.async {
+                self.collectionView.reloadData()
+            }
+        }
+    }
+    
+    //날짜 계산
+    func changeDate(date: String) -> String { // 순서대로 함수 진행
+        let formatter = DateFormatter()
+        formatter.locale = Locale(identifier: "ko_KR")
+        formatter.dateFormat = "yyyy-MM-dd"
+        
+        let date = formatter.date(from: date)
+        formatter.dateFormat = "MM/dd/yyyy"
+        
+        let resultDate = formatter.string(from: date!)
+        
+        return resultDate
     }
 }
 

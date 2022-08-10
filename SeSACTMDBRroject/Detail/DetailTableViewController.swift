@@ -30,13 +30,14 @@ class DetailTableViewController: UITableViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        let recommandURL = APIKey.TMDBMOVIE + UserDefaultHelper.shared.movieID + "/recommendations?api_key=" + APIKey.TMDBAPI_ID + "&language=en-US&page=1"
        
         requestPeopleData()
         setViewConfiguration()
         searchTableView.delegate = self
         searchTableView.dataSource = self
         tableView.rowHeight = UITableView.automaticDimension
-        TrendManager.shared.requestRecommandPostImage { value in
+        TrendManager.shared.requestRecommandPostImage(url: recommandURL) { value in
             self.recommandMovieList = value
             DispatchQueue.main.async {
                 self.searchTableView.reloadData()

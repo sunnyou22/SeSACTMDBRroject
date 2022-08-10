@@ -9,24 +9,18 @@ import UIKit
 
 class MainViewController: UIViewController {
     
-
-  
     @IBOutlet weak var mainTableView: UITableView!
     @IBOutlet weak var bannerCollectionView: UICollectionView!
+    
+    var postImageList: [[String]] = []
+
     let color: [UIColor] = [.systemPink, .lightGray, .brown, .green]
-    let movieTitle: [String] = ["아는 와이프와 비슷한 콘텐츠", "미스터 션샤인과 비슷한 콘텐츠", "액션 SF", "미국 TV프로그램"]
     
     //컬렉션 뷰 내부 셀안에 숫자
-    let numberList: [[Int]] = [
-        [Int](1...10),
-        [Int](30...36),
-        [Int](50...58),
-        [Int](1000...1012)
-    ]
     
     override func viewDidLoad() {
         super.viewDidLoad()
-      
+        
         mainTableView.delegate = self
         mainTableView.dataSource = self
         
@@ -35,15 +29,27 @@ class MainViewController: UIViewController {
         bannerCollectionView.register(UINib(nibName: CardCollectionViewCell.reuseIdentifier, bundle: nil), forCellWithReuseIdentifier: CardCollectionViewCell.reuseIdentifier)
         bannerCollectionView.isPagingEnabled = true
         bannerCollectionView.collectionViewLayout = collectionViewlayout()
-         
+        
         mainTableView.separatorInset = UIEdgeInsets(top: 0, left: 4, bottom: 0, right: 0)
+        
+        //api부르기
+        requestRecommandPostImage { value in
+            dump(value)
+            self.postImageList = value
+            DispatchQueue.main.async {
+                self.mainTableView.reloadData()
+            }
+        }
+    
+        print(postImageList)
     }
 }
 
 extension MainViewController: UITableViewDelegate, UITableViewDataSource {
     
     func numberOfSections(in tableView: UITableView) -> Int {
-        return numberList.count
+        print(postImageList.count)
+        return postImageList.count
     }
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
@@ -53,8 +59,8 @@ extension MainViewController: UITableViewDelegate, UITableViewDataSource {
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         guard let cell = tableView.dequeueReusableCell(withIdentifier: MainTableViewCell.reuseIdentifier, for: indexPath) as? MainTableViewCell
         else { return UITableViewCell() }
-        
-        cell.setupUI(title: movieTitle[indexPath.section])
+        //
+        //        cell.setupUI(title: movieTitle[indexPath.section])
         cell.backgroundColor = .black
         cell.contentsCollectionView.dataSource = self
         cell.contentsCollectionView.delegate = self
@@ -65,16 +71,32 @@ extension MainViewController: UITableViewDelegate, UITableViewDataSource {
     }
     
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
-        return (180 + 8 + 8 + 16 + 28)
+        return 300
     }
-    
-   
 }
 
 extension MainViewController: UICollectionViewDelegate, UICollectionViewDataSource {
     
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        return collectionView == bannerCollectionView ? color.count : numberList[collectionView.tag].count
+        
+        // 다차원 배열로 묶어서 인덱스를 비교하는 방법도 있음 -> 나중에 내가 알아볼 수 있을
+        
+//                if collectionView == bannerCollectionView {
+//                    return color.count
+//                } else if collectionView.tag == section {
+//                    return postImageList[section].count
+//                }
+        
+        if collectionView == bannerCollectionView {
+            return color.count
+        } else if collectionView.tag == 0 {
+            return postImageList[collectionView.tag].count
+        } else if collectionView.tag == 1 {
+            return postImageList[collectionView.tag].count
+        } else if collectionView.tag == 2 {
+            return postImageList[collectionView.tag].count
+        }
+        return 0
     }
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
@@ -83,9 +105,8 @@ extension MainViewController: UICollectionViewDelegate, UICollectionViewDataSour
         if collectionView == bannerCollectionView {
             cell.cardView.posterImageView.backgroundColor = color[indexPath.item]
         } else {
-            cell.cardView.posterImageView.backgroundColor = .brown
-            cell.cardView.contentsLabel.text = "\(numberList[collectionView.tag][indexPath.item])"
-            cell.cardView.contentsLabel.textColor = .white
+            let url = URL(string: postImageList[collectionView.tag][indexPath.row])
+            cell.cardView.posterImageView.kf.setImage(with: url)
         }
         
         return cell
@@ -100,5 +121,25 @@ extension MainViewController: UICollectionViewDelegate, UICollectionViewDataSour
         layout.sectionInset = UIEdgeInsets(top: 0, left: 0, bottom: 0, right: 0)
         
         return layout
+    }
+}
+
+extension MainViewController {
+    func requestRecommandPostImage(completionHandler: @escaping ([[String]]) -> ()) {
+            
+        var postImageList: [[String]] = []
+        
+            TrendManager.shared.requestRecommandPostImage(url: APIKey.SIMILARMOVIE) { value in
+                postImageList.append(value)
+    
+                TrendManager.shared.requestRecommandPostImage(url: APIKey.LATESTMOVIE) { value in
+                    postImageList.append(value)
+    
+                    TrendManager.shared.requestRecommandPostImage(url: APIKey.POPULARMOVIE) { value in
+                        postImageList.append(value)
+                        completionHandler(postImageList)
+                    }
+                }
+            }
     }
 }
