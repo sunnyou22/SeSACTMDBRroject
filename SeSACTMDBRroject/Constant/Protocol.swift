@@ -18,20 +18,8 @@ extension UIViewController: ReusableIdentifier {
     }
 }
 
-extension CollectionViewCell: ReusableIdentifier {
+extension UIView: ReusableIdentifier {
     static var reuseIdentifier: String {
-        return String(describing: self)
-    }
-}
-
-extension DetailTableViewCell: ReusableIdentifier {
-    static var reuseIdentifier: String {
-        return String(describing: self)
-    }
-}
-
-extension OverVeiwTableViewCell: ReusableIdentifier {
-    static var reuseIdentifier: String {
-        return String(describing: self)
+        String(describing: self)
     }
 }

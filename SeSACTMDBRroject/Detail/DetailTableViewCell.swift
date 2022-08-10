@@ -12,6 +12,12 @@ class DetailTableViewCell: UITableViewCell {
     @IBOutlet weak var castImage: UIImageView!
     @IBOutlet weak var castname: UILabel!
     @IBOutlet weak var character: UILabel!
+  
+    
+    override func awakeFromNib() {
+        super.awakeFromNib()
+        
+    }
     
     // 프로토콜로 만들기
     func setfont() {
@@ -28,4 +34,5 @@ class DetailTableViewCell: UITableViewCell {
         self.layoutMargins = UIEdgeInsets(top: 0, left: 20, bottom: 0, right: 0)
         self.separatorInset = UIEdgeInsets(top: 0, left: 20, bottom: 0, right: 0)
     }
+
 }

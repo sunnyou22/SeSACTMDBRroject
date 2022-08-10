@@ -46,29 +46,23 @@ class SearchViewController: UIViewController {
     }
     
     func requestGanre() {
-        let url = APIKey.TMDBGENRE
         
-        AF.request(url, method: .get).validate().responseData { response in
-            switch response.result {
-            case .success(let value):
-                let json = JSON(value)
-                
-                print("JSON: \(json)")
-                print(json["genres"].arrayValue.count)
-                
-                for i in json["genres"].arrayValue {
-                    let ganreID = i["id"].intValue
-                    let ganreName = i["name"].stringValue
-                    self.ganrelist.updateValue(ganreName, forKey: ganreID)
-                    self.idList.append(ganreID)
-                }
+        TrendManager.shared.callRequest(url: APIKey.TMDBGENRE) { json in
+            print(json["genres"].arrayValue.count)
+            
+            for i in json["genres"].arrayValue {
+                let ganreID = i["id"].intValue
+                let ganreName = i["name"].stringValue
+                self.ganrelist.updateValue(ganreName, forKey: ganreID)
+                self.idList.append(ganreID)
+            }
+            DispatchQueue.main.async {
                 self.collectionView.reloadData()
-            case .failure(let error):
-                print(error)
             }
         }
     }
     
+    //날짜 계산
     func changeDate(date: String) -> String { // 순서대로 함수 진행
         let formatter = DateFormatter()
         formatter.locale = Locale(identifier: "ko_KR")
@@ -84,45 +78,31 @@ class SearchViewController: UIViewController {
     
     // cast정보로 overView 바꾸기 -> UserDefault
     func requestTMDBData() {
-        let url = APIKey.TMDBAPI + APIKey.TMDBAPI_ID
-        AF.request(url, method: .get).validate(statusCode: 200...404).responseData { response in
+        
+        TrendManager.shared.callRequest(url: APIKey.TMDBAPI + APIKey.TMDBAPI_ID) { json in
+            print("JSON: \(json)")
             
-            switch response.result {
-            case .success(let value):
-                let json = JSON(value)
-                let statusCode = response.response?.statusCode ?? 404 // 이렇게 statusCode를 해결할 수 있음
-                print("JSON: \(json)")
-//                print("\(json["results"].arrayValue.count)")
+            for item in json["results"].arrayValue {
+                let image = APIKey.TMDBBACGROUNDIMAGE_W500 + item["poster_path"].stringValue
+                let releaseDate = item["release_date"].stringValue
+                let rate = item["vote_average"].doubleValue
+                let title = item["title"].stringValue
+                let overView = item["overview"].stringValue
+                let movieganre = item["genre_ids"].arrayValue[0].intValue
+                let backdropPath = APIKey.TMDBPOSTERIMAGE_W780 + item["backdrop_path"].stringValue
+                let id = item["id"].intValue
                 
-                for item in json["results"].arrayValue {
-                    let image = APIKey.TMDBBACGROUNDIMAGE_W500 + item["poster_path"].stringValue
-                    let releaseDate = item["release_date"].stringValue
-                    let rate = item["vote_average"].doubleValue
-                    let title = item["title"].stringValue
-                    let overView = item["overview"].stringValue
-                    let movieganre = item["genre_ids"].arrayValue[0].intValue
-                    let backdropPath = APIKey.TMDBPOSTERIMAGE_W780 + item["backdrop_path"].stringValue
-                    let id = item["id"].intValue
-                    
-                    // 값을 받음
-                    let data = MovieData(releaseDate: releaseDate, image: image, backdropPath: backdropPath, ganre: movieganre, rate: rate, title: title, overView: overView, id: id)
-                    
-                    self.list.append(data)
-                    print(APIKey.TMDBGENRE)
-                    
-                    self.totalCount = json["total_results"].intValue
-                    
-                }
+                // 값을 받음
+                let data = MovieData(releaseDate: releaseDate, image: image, backdropPath: backdropPath, ganre: movieganre, rate: rate, title: title, overView: overView, id: id)
+                
+                self.list.append(data)
+                print(APIKey.TMDBGENRE)
+                
+                self.totalCount = json["total_results"].intValue
+                
+            }
+            DispatchQueue.main.async {
                 self.collectionView.reloadData()
-                
-                if statusCode == 200 {
-                    print(statusCode)
-                } else {
-                    print(json["status_message"].stringValue)
-                }
-                
-            case .failure(let error):
-                print(error)
             }
         }
     }
@@ -134,7 +114,7 @@ extension SearchViewController: UICollectionViewDelegate, UICollectionViewDataSo
     }
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
-       
+        
         guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: CollectionViewCell.reuseIdentifier, for: indexPath) as? CollectionViewCell else {
             return UICollectionViewCell()
         }
@@ -154,13 +134,13 @@ extension SearchViewController: UICollectionViewDelegate, UICollectionViewDataSo
         
         return cell
     }
-
-@objc
-func goClipLink() {
-    let sb = UIStoryboard(name: "Main", bundle: nil)
-    guard let vc = sb.instantiateViewController(withIdentifier: WebViewController.reuseIdentifier) as? WebViewController else { return }
-    self.navigationController?.pushViewController(vc, animated: true)
-}
+    
+    @objc
+    func goClipLink() {
+        let sb = UIStoryboard(name: "Main", bundle: nil)
+        guard let vc = sb.instantiateViewController(withIdentifier: WebViewController.reuseIdentifier) as? WebViewController else { return }
+        self.navigationController?.pushViewController(vc, animated: true)
+    }
     
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
         let sb = UIStoryboard(name: "Main", bundle: nil)
@@ -202,6 +182,6 @@ extension SearchViewController {
         layout.sectionInset = UIEdgeInsets(top: spacing, left: spacing, bottom: spacing, right: spacing)
         //        layout.minimumInteritemSpacing = spacing * 2 // 행에 많이 있을 때
         layout.minimumLineSpacing = spacing * 2
-       return layout
+        return layout
     }
 }
