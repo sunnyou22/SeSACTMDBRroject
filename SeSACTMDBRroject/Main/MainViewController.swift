@@ -13,7 +13,7 @@ class MainViewController: UIViewController {
     @IBOutlet weak var bannerCollectionView: UICollectionView!
     
     var postImageList: [[String]] = []
-
+    var movieTitle: [String] = ["비슷한 영화", "현재상영중인 영화", "인기영화"]
     let color: [UIColor] = [.systemPink, .lightGray, .brown, .green]
     
     //컬렉션 뷰 내부 셀안에 숫자
@@ -66,6 +66,9 @@ extension MainViewController: UITableViewDelegate, UITableViewDataSource {
         cell.contentsCollectionView.delegate = self
         cell.contentsCollectionView.tag = indexPath.section // 한줄을 통일하기 좋음
         cell.contentsCollectionView.register(UINib(nibName: CardCollectionViewCell.reuseIdentifier, bundle: nil), forCellWithReuseIdentifier: CardCollectionViewCell.reuseIdentifier)
+        cell.titleLabel.text = movieTitle[indexPath.section]
+        cell.setupUI(title: movieTitle[indexPath.section])
+        cell.setSelected(false, animated: false)
         
         return cell
     }
@@ -131,12 +134,13 @@ extension MainViewController {
         
             TrendManager.shared.requestRecommandPostImage(url: APIKey.SIMILARMOVIE) { value in
                 postImageList.append(value)
-    
-                TrendManager.shared.requestRecommandPostImage(url: APIKey.LATESTMOVIE) { value in
+    print("시밀러")
+                TrendManager.shared.requestRecommandPostImage(url: APIKey.NOWPLAY) { value in
                     postImageList.append(value)
-    
+    print("지금")
                     TrendManager.shared.requestRecommandPostImage(url: APIKey.POPULARMOVIE) { value in
                         postImageList.append(value)
+                        print("인기")
                         completionHandler(postImageList)
                     }
                 }

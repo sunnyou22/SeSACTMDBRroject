@@ -110,6 +110,7 @@
                     </view>
                     <navigationItem key="navigationItem" id="iWu-sL-9wO">
                         <barButtonItem key="leftBarButtonItem" title="Item" image="plus" catalog="system" id="lak-eb-foK"/>
+                        <barButtonItem key="rightBarButtonItem" title="Item" id="DBL-pN-1EM"/>
                     </navigationItem>
                     <connections>
                         <outlet property="collectionView" destination="OsO-KP-p8i" id="7L1-k5-1pH"/>
@@ -117,7 +118,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="581" y="-42"/>
+            <point key="canvasLocation" x="364" y="-42"/>
         </scene>
         <!--Map View Controller-->
         <scene sceneID="aaA-eg-AKy">
@@ -473,6 +474,7 @@
                                         </tableViewCellContentView>
                                         <connections>
                                             <outlet property="contentsCollectionView" destination="Oos-2M-5w8" id="gu1-fV-Ovw"/>
+                                            <outlet property="titleLabel" destination="aqd-xf-ecg" id="DfG-hZ-58U"/>
                                         </connections>
                                     </tableViewCell>
                                 </prototypes>

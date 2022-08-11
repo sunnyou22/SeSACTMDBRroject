@@ -9,8 +9,8 @@ import UIKit
 
 class MainTableViewCell: UITableViewCell {
 
-    @IBOutlet weak var titleLabel: UILabel!
     @IBOutlet weak var contentsCollectionView: UICollectionView!
+    @IBOutlet weak var titleLabel: UILabel!
     
     override func awakeFromNib() {
         super.awakeFromNib()
@@ -22,7 +22,7 @@ class MainTableViewCell: UITableViewCell {
         titleLabel.text = title
         titleLabel.textColor = .white
         titleLabel.font = .systemFont(ofSize: 20, weight: .heavy)
-        titleLabel.backgroundColor = .clear
+        titleLabel.backgroundColor = .clear 
         
         contentsCollectionView.backgroundColor = .clear
     }

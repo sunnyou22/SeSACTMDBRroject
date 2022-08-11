@@ -9,7 +9,6 @@
     <objects>
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="CardView" customModule="SeSACTMDBRroject" customModuleProvider="target">
             <connections>
-                <outlet property="contentsLabel" destination="fcc-h6-Wux" id="h6N-S2-eqp"/>
                 <outlet property="likeButton" destination="f8r-pp-FAI" id="VUX-vw-hpn"/>
                 <outlet property="posterImageView" destination="WWo-3w-kc8" id="Xhm-sq-NoX"/>
             </connections>
@@ -33,22 +32,14 @@
                         <preferredSymbolConfiguration key="preferredSymbolConfigurationForImage" configurationType="pointSize" pointSize="30"/>
                     </buttonConfiguration>
                 </button>
-                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="fcc-h6-Wux">
-                    <rect key="frame" x="86.5" y="148" width="42" height="21"/>
-                    <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                    <nil key="textColor"/>
-                    <nil key="highlightedColor"/>
-                </label>
             </subviews>
             <color key="backgroundColor" systemColor="systemBackgroundColor"/>
             <constraints>
                 <constraint firstAttribute="trailing" secondItem="WWo-3w-kc8" secondAttribute="trailing" id="0dp-qp-iQU"/>
                 <constraint firstItem="WWo-3w-kc8" firstAttribute="top" secondItem="iN0-l3-epB" secondAttribute="top" id="3IC-Ig-qHG"/>
-                <constraint firstItem="fcc-h6-Wux" firstAttribute="centerX" secondItem="iN0-l3-epB" secondAttribute="centerX" id="GTu-8A-C6c"/>
                 <constraint firstItem="WWo-3w-kc8" firstAttribute="leading" secondItem="iN0-l3-epB" secondAttribute="leading" id="OvW-2R-5gC"/>
                 <constraint firstAttribute="bottom" secondItem="WWo-3w-kc8" secondAttribute="bottom" id="UUh-8e-xmn"/>
                 <constraint firstItem="f8r-pp-FAI" firstAttribute="top" secondItem="iN0-l3-epB" secondAttribute="top" constant="4" id="eGu-KZ-gwq"/>
-                <constraint firstItem="fcc-h6-Wux" firstAttribute="centerY" secondItem="iN0-l3-epB" secondAttribute="centerY" id="nlW-H6-2l2"/>
                 <constraint firstItem="WWo-3w-kc8" firstAttribute="trailing" secondItem="f8r-pp-FAI" secondAttribute="trailing" constant="4" id="qi1-6B-SHZ"/>
             </constraints>
             <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>

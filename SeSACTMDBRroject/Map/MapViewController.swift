@@ -32,7 +32,7 @@ class MapViewController: UIViewController {
         let therterList = TheaterList()
        
         // 위치 위경도구하기
-        let region = MKCoordinateRegion(center: center, latitudinalMeters: 1000, longitudinalMeters: 1000)
+        let region = MKCoordinateRegion(center: center, latitudinalMeters: 10000, longitudinalMeters: 10000)
         mapView.setRegion(region, animated: true)
         
         // 영화관 여려개 설정 -> 반복문 함수 클로저
@@ -139,11 +139,13 @@ extension MapViewController {
     @objc
     func showTheaterAlert() {
         let theaterList = TheaterList()
+        
+        //어노테이션 다 삭제
         let allAnnotations = self.mapView.annotations
         self.mapView.removeAnnotations(allAnnotations)
 
         
-        let alert = UIAlertController(title: "", message: "", preferredStyle: .actionSheet)
+        let alert = UIAlertController(title: nil, message: "", preferredStyle: .actionSheet)
         
         let mega = UIAlertAction(title: theaterList.mapAnnotations[0].type, style: .default) { _ in
             self.testAnnotation(index: 0)

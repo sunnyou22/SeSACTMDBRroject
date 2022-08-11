@@ -179,9 +179,7 @@ extension SearchViewController { // 네비바 아이템 추가
     //MARK: 네비
     func setNavigation() {
         navigationItem.title = "MOVIE" // 첫 화면에 네비게이션 연결방법
-        navigationItem.leftBarButtonItem = UIBarButtonItem(image: UIImage(systemName: "list.triangle"), style: .plain, target: self, action: #selector(goMain))
-        navigationItem.leftBarButtonItem = UIBarButtonItem(image: UIImage(systemName: "paperplane.fill"), style: .plain, target: self, action: #selector(goMap))
-
+        navigationItem.leftBarButtonItems = [UIBarButtonItem(image: UIImage(systemName: "list.triangle"), style: .plain, target: self, action: #selector(goMain)), UIBarButtonItem(image: UIImage(systemName: "paperplane.fill"), style: .plain, target: self, action: #selector(goMap))]
         navigationItem.rightBarButtonItem = UIBarButtonItem(image: UIImage(systemName: "magnifyingglass"), style: .plain, target: self, action: #selector(goClipLink)) // 검색바 나오는 액션...
         let barAppearance = UINavigationBarAppearance()
         barAppearance.backgroundColor = .systemBackground
