@@ -8,6 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		9024CAE728A02323000E3472 /* WebViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9024CAE628A02323000E3472 /* WebViewController.swift */; };
+		905C8FFC28A4E4B500F367C7 /* MapViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 905C8FFB28A4E4B500F367C7 /* MapViewController.swift */; };
 		90A837F92899F7BA00D61D88 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 90A837F82899F7BA00D61D88 /* AppDelegate.swift */; };
 		90A837FB2899F7BA00D61D88 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 90A837FA2899F7BA00D61D88 /* SceneDelegate.swift */; };
 		90A837FD2899F7BA00D61D88 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 90A837FC2899F7BA00D61D88 /* ViewController.swift */; };
@@ -17,8 +18,6 @@
 		90A8380D2899F7D500D61D88 /* .gitignore in Resources */ = {isa = PBXBuildFile; fileRef = 90A8380C2899F7D500D61D88 /* .gitignore */; };
 		90A8380F2899F82A00D61D88 /* SearchViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 90A8380E2899F82A00D61D88 /* SearchViewController.swift */; };
 		90A838112899F8A200D61D88 /* APIKey.swift in Sources */ = {isa = PBXBuildFile; fileRef = 90A838102899F8A200D61D88 /* APIKey.swift */; };
-		90A838132899F9DE00D61D88 /* Constant.swift in Sources */ = {isa = PBXBuildFile; fileRef = 90A838122899F9DE00D61D88 /* Constant.swift */; };
-		90A838172899FADD00D61D88 /* Exemple.swift in Sources */ = {isa = PBXBuildFile; fileRef = 90A838162899FADD00D61D88 /* Exemple.swift */; };
 		90A8382B289AA5C300D61D88 /* Alamofire in Frameworks */ = {isa = PBXBuildFile; productRef = 90A8382A289AA5C300D61D88 /* Alamofire */; };
 		90A8382E289AA60700D61D88 /* SwiftyJSON in Frameworks */ = {isa = PBXBuildFile; productRef = 90A8382D289AA60700D61D88 /* SwiftyJSON */; };
 		90A83830289AD98000D61D88 /* Protocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 90A8382F289AD98000D61D88 /* Protocol.swift */; };
@@ -43,6 +42,7 @@
 
 /* Begin PBXFileReference section */
 		9024CAE628A02323000E3472 /* WebViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WebViewController.swift; sourceTree = "<group>"; };
+		905C8FFB28A4E4B500F367C7 /* MapViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MapViewController.swift; sourceTree = "<group>"; };
 		90A837F52899F7BA00D61D88 /* SeSACTMDBRroject.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = SeSACTMDBRroject.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		90A837F82899F7BA00D61D88 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		90A837FA2899F7BA00D61D88 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -54,8 +54,6 @@
 		90A8380C2899F7D500D61D88 /* .gitignore */ = {isa = PBXFileReference; lastKnownFileType = text; path = .gitignore; sourceTree = "<group>"; };
 		90A8380E2899F82A00D61D88 /* SearchViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = SearchViewController.swift; path = SeSACTMDBRroject/Search/SearchViewController.swift; sourceTree = SOURCE_ROOT; };
 		90A838102899F8A200D61D88 /* APIKey.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = APIKey.swift; sourceTree = "<group>"; };
-		90A838122899F9DE00D61D88 /* Constant.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = Constant.swift; path = SeSACTMDBRroject/Key/Constant.swift; sourceTree = SOURCE_ROOT; };
-		90A838162899FADD00D61D88 /* Exemple.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Exemple.swift; sourceTree = "<group>"; };
 		90A8382F289AD98000D61D88 /* Protocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Protocol.swift; sourceTree = "<group>"; };
 		90A83835289AEB6700D61D88 /* CollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CollectionViewCell.swift; sourceTree = "<group>"; };
 		90A83836289AEB6700D61D88 /* CollectionViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = CollectionViewCell.xib; sourceTree = "<group>"; };
@@ -148,16 +146,16 @@
 				90A837FA2899F7BA00D61D88 /* SceneDelegate.swift */,
 				90A837F82899F7BA00D61D88 /* AppDelegate.swift */,
 				90DA0FB628A388AC00616F9D /* IBInspectable.swift */,
+				90A838142899FA1500D61D88 /* Resource */,
+				90CD1BC3289C018200D73A17 /* Constant */,
+				90A838152899FA8800D61D88 /* Key */,
+				90DA0FBC28A388CE00616F9D /* View */,
 				9024CAE528A022D0000E3472 /* Search */,
 				9024CAE328A02257000E3472 /* Detail */,
 				90DA0FC128A38D4C00616F9D /* Main */,
 				9024CAE428A02271000E3472 /* Web */,
-				90DA0FBC28A388CE00616F9D /* View */,
 				90DA0FAF28A3886E00616F9D /* CollectionCell */,
-				90A838152899FA8800D61D88 /* Key */,
-				90CD1BC3289C018200D73A17 /* Constant */,
-				90A838142899FA1500D61D88 /* Resource */,
-				90A8383A289AEF2F00D61D88 /* Controller */,
+				90A8383A289AEF2F00D61D88 /* Map */,
 				90A8383B289AEF7F00D61D88 /* Storyboard */,
 				90A83839289AEF2200D61D88 /* XIB */,
 				90A838012899F7BA00D61D88 /* Assets.xcassets */,
@@ -177,9 +175,7 @@
 		90A838152899FA8800D61D88 /* Key */ = {
 			isa = PBXGroup;
 			children = (
-				90A838162899FADD00D61D88 /* Exemple.swift */,
 				90A838102899F8A200D61D88 /* APIKey.swift */,
-				90A838122899F9DE00D61D88 /* Constant.swift */,
 			);
 			path = Key;
 			sourceTree = "<group>";
@@ -193,11 +189,12 @@
 			path = XIB;
 			sourceTree = "<group>";
 		};
-		90A8383A289AEF2F00D61D88 /* Controller */ = {
+		90A8383A289AEF2F00D61D88 /* Map */ = {
 			isa = PBXGroup;
 			children = (
+				905C8FFB28A4E4B500F367C7 /* MapViewController.swift */,
 			);
-			path = Controller;
+			path = Map;
 			sourceTree = "<group>";
 		};
 		90A8383B289AEF7F00D61D88 /* Storyboard */ = {
@@ -340,15 +337,14 @@
 				90DA0FC328A3921B00616F9D /* RecommandTableViewCell.swift in Sources */,
 				90C21F14289C58AB00F1AF0F /* DetailTableViewCell.swift in Sources */,
 				90CD1BC5289C01B100D73A17 /* Extension.swift in Sources */,
+				905C8FFC28A4E4B500F367C7 /* MapViewController.swift in Sources */,
 				90DA0FB728A388AC00616F9D /* IBInspectable.swift in Sources */,
 				90DA0FB328A3886E00616F9D /* CardCollectionViewCell.swift in Sources */,
 				90DA0FBB28A388C300616F9D /* MainTableViewCell.swift in Sources */,
 				90A837FB2899F7BA00D61D88 /* SceneDelegate.swift in Sources */,
 				90C21F16289C596500F1AF0F /* DetailTableViewController.swift in Sources */,
 				90A838112899F8A200D61D88 /* APIKey.swift in Sources */,
-				90A838172899FADD00D61D88 /* Exemple.swift in Sources */,
 				90C21F1D289E3F3600F1AF0F /* OverVeiwTableViewCell.swift in Sources */,
-				90A838132899F9DE00D61D88 /* Constant.swift in Sources */,
 				9024CAE728A02323000E3472 /* WebViewController.swift in Sources */,
 				90DA0FA928A31C8300616F9D /* APIManager2.swift in Sources */,
 				90DA0FBF28A388CE00616F9D /* CardView.swift in Sources */,

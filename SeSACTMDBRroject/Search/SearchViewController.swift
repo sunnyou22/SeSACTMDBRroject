@@ -30,30 +30,15 @@ class SearchViewController: UIViewController {
         collectionView.dataSource = self
         self.collectionView.register(UINib(nibName: CollectionViewCell.reuseIdentifier, bundle: nil), forCellWithReuseIdentifier: CollectionViewCell.reuseIdentifier)
         
-        //MARK: 네비
-        navigationItem.title = "MOVIE" // 첫 화면에 네비게이션 연결방법
-        navigationItem.leftBarButtonItem = UIBarButtonItem(image: UIImage(systemName: "list.triangle"), style: .plain, target: self, action: #selector(goMain))
-        navigationItem.rightBarButtonItem = UIBarButtonItem(image: UIImage(systemName: "magnifyingglass"), style: .plain, target: self, action: nil) // 검색바 나오는 액션...
-        let barAppearance = UINavigationBarAppearance()
-        barAppearance.backgroundColor = .systemBackground
-        navigationItem.scrollEdgeAppearance = barAppearance
-        
+        //MARK: 레이아웃
         collectionView.collectionViewLayout = collectionViewLayout()
+        
+        //MARK: 네비
+        setNavigation()
         
         //MARK: api요청
         requestTMDBData()
         requestGanre() //1, 서버통신 2.데이터를 가져왔는지 , 3. 데이터 형태확인
-    }
-    
-    @objc
-    func goMain() {
-        let sb = UIStoryboard(name: "Main", bundle: nil)
-        guard let vc = sb.instantiateViewController(withIdentifier: MainViewController.reuseIdentifier) as? MainViewController else { return }
-        
-//        vc.modalPresentationStyle = .fullScreen
-//        present(vc, animated: true)
-          
-        self.navigationController?.pushViewController(vc, animated: true)
     }
     
     // cast정보로 overView 바꾸기 -> UserDefault
@@ -146,13 +131,6 @@ extension SearchViewController: UICollectionViewDelegate, UICollectionViewDataSo
         return cell
     }
     
-    @objc
-    func goClipLink() {
-        let sb = UIStoryboard(name: "Main", bundle: nil)
-        guard let vc = sb.instantiateViewController(withIdentifier: WebViewController.reuseIdentifier) as? WebViewController else { return }
-        self.navigationController?.pushViewController(vc, animated: true)
-    }
-    
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
         let sb = UIStoryboard(name: "Main", bundle: nil)
         guard let vc = sb.instantiateViewController(withIdentifier: DetailTableViewController.reuseIdentifier) as? DetailTableViewController else { return }
@@ -194,5 +172,44 @@ extension SearchViewController {
         //        layout.minimumInteritemSpacing = spacing * 2 // 행에 많이 있을 때
         layout.minimumLineSpacing = spacing * 2
         return layout
+    }
+}
+
+extension SearchViewController { // 네비바 아이템 추가
+    //MARK: 네비
+    func setNavigation() {
+        navigationItem.title = "MOVIE" // 첫 화면에 네비게이션 연결방법
+        navigationItem.leftBarButtonItem = UIBarButtonItem(image: UIImage(systemName: "list.triangle"), style: .plain, target: self, action: #selector(goMain))
+        navigationItem.leftBarButtonItem = UIBarButtonItem(image: UIImage(systemName: "paperplane.fill"), style: .plain, target: self, action: #selector(goMap))
+
+        navigationItem.rightBarButtonItem = UIBarButtonItem(image: UIImage(systemName: "magnifyingglass"), style: .plain, target: self, action: #selector(goClipLink)) // 검색바 나오는 액션...
+        let barAppearance = UINavigationBarAppearance()
+        barAppearance.backgroundColor = .systemBackground
+        navigationItem.scrollEdgeAppearance = barAppearance
+    }
+    
+    @objc
+    func goClipLink() {
+        let sb = UIStoryboard(name: "Main", bundle: nil)
+        guard let vc = sb.instantiateViewController(withIdentifier: WebViewController.reuseIdentifier) as? WebViewController else { return }
+        self.navigationController?.pushViewController(vc, animated: true)
+    }
+    
+    @objc
+    func goMap() {
+        let sb = UIStoryboard(name: "Main", bundle: nil)
+        guard let vc = sb.instantiateViewController(withIdentifier: MapViewController.reuseIdentifier) as? MapViewController else { return }
+        self.navigationController?.pushViewController(vc, animated: true)
+    }
+    
+    @objc
+    func goMain() {
+        let sb = UIStoryboard(name: "Main", bundle: nil)
+        guard let vc = sb.instantiateViewController(withIdentifier: MainViewController.reuseIdentifier) as? MainViewController else { return }
+
+        //        vc.modalPresentationStyle = .fullScreen
+        //        present(vc, animated: true)
+
+        self.navigationController?.pushViewController(vc, animated: true)
     }
 }

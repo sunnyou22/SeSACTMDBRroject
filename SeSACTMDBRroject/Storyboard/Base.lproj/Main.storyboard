@@ -109,7 +109,7 @@
                         </constraints>
                     </view>
                     <navigationItem key="navigationItem" id="iWu-sL-9wO">
-                        <barButtonItem key="leftBarButtonItem" title="Item" image="magnifyingglass" catalog="system" id="lak-eb-foK"/>
+                        <barButtonItem key="leftBarButtonItem" title="Item" image="plus" catalog="system" id="lak-eb-foK"/>
                     </navigationItem>
                     <connections>
                         <outlet property="collectionView" destination="OsO-KP-p8i" id="7L1-k5-1pH"/>
@@ -118,6 +118,35 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="581" y="-42"/>
+        </scene>
+        <!--Map View Controller-->
+        <scene sceneID="aaA-eg-AKy">
+            <objects>
+                <viewController storyboardIdentifier="MapViewController" id="QxE-eT-ZkO" customClass="MapViewController" customModule="SeSACTMDBRroject" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="quJ-3C-Ai7">
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <mapView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" mapType="standard" translatesAutoresizingMaskIntoConstraints="NO" id="FFM-3P-QJ8">
+                                <rect key="frame" x="0.0" y="44" width="414" height="818"/>
+                            </mapView>
+                        </subviews>
+                        <viewLayoutGuide key="safeArea" id="ueZ-o5-OqN"/>
+                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                        <constraints>
+                            <constraint firstItem="ueZ-o5-OqN" firstAttribute="trailing" secondItem="FFM-3P-QJ8" secondAttribute="trailing" id="RBL-56-ayW"/>
+                            <constraint firstItem="ueZ-o5-OqN" firstAttribute="bottom" secondItem="FFM-3P-QJ8" secondAttribute="bottom" id="S18-bC-2wG"/>
+                            <constraint firstItem="FFM-3P-QJ8" firstAttribute="top" secondItem="ueZ-o5-OqN" secondAttribute="top" id="r8n-fz-CEC"/>
+                            <constraint firstItem="FFM-3P-QJ8" firstAttribute="leading" secondItem="ueZ-o5-OqN" secondAttribute="leading" id="xiO-aB-fgq"/>
+                        </constraints>
+                    </view>
+                    <connections>
+                        <outlet property="mapView" destination="FFM-3P-QJ8" id="C24-r2-yrB"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="OyY-gu-ggH" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="530" y="627"/>
         </scene>
         <!--Detail Table View Controller-->
         <scene sceneID="655-uQ-PYL">
@@ -373,6 +402,8 @@
                             <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" dataMode="prototypes" translatesAutoresizingMaskIntoConstraints="NO" id="tbO-4L-QAB">
                                 <rect key="frame" x="0.0" y="44" width="414" height="179"/>
                                 <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                                <viewLayoutGuide key="contentLayoutGuide" id="1Ie-ml-9R2"/>
+                                <viewLayoutGuide key="frameLayoutGuide" id="u0i-CO-Wfk"/>
                                 <collectionViewFlowLayout key="collectionViewLayout" automaticEstimatedItemSize="YES" minimumLineSpacing="10" minimumInteritemSpacing="10" id="lJx-yv-sXX">
                                     <size key="itemSize" width="128" height="128"/>
                                     <size key="headerReferenceSize" width="0.0" height="0.0"/>
@@ -394,16 +425,16 @@
                                 <rect key="frame" x="0.0" y="223" width="414" height="673"/>
                                 <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                                 <prototypes>
-                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="MainTableViewCell" rowHeight="199" id="DzR-ng-YfC" customClass="MainTableViewCell" customModule="SeSACTMDBRroject" customModuleProvider="target">
-                                        <rect key="frame" x="0.0" y="44.5" width="414" height="199"/>
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="MainTableViewCell" rowHeight="232" id="DzR-ng-YfC" customClass="MainTableViewCell" customModule="SeSACTMDBRroject" customModuleProvider="target">
+                                        <rect key="frame" x="0.0" y="44.5" width="414" height="232"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="DzR-ng-YfC" id="qcM-ow-8Hc">
-                                            <rect key="frame" x="0.0" y="0.0" width="414" height="199"/>
+                                            <rect key="frame" x="0.0" y="0.0" width="414" height="232"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" dataMode="prototypes" translatesAutoresizingMaskIntoConstraints="NO" id="Oos-2M-5w8">
-                                                    <rect key="frame" x="0.0" y="52" width="414" height="139"/>
-                                                    <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                                                    <rect key="frame" x="0.0" y="28" width="414" height="196"/>
+                                                    <color key="backgroundColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                     <collectionViewFlowLayout key="collectionViewLayout" automaticEstimatedItemSize="YES" minimumLineSpacing="10" minimumInteritemSpacing="10" id="Sqa-pZ-b4n">
                                                         <size key="itemSize" width="128" height="128"/>
                                                         <size key="headerReferenceSize" width="0.0" height="0.0"/>
@@ -421,10 +452,10 @@
                                                         </collectionViewCell>
                                                     </cells>
                                                 </collectionView>
-                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="2Ap-Kk-ogY">
-                                                    <rect key="frame" x="4" y="16" width="394" height="28"/>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="aqd-xf-ecg">
+                                                    <rect key="frame" x="0.0" y="0.0" width="42" height="28"/>
                                                     <constraints>
-                                                        <constraint firstAttribute="height" constant="28" id="kPi-f0-Zvb"/>
+                                                        <constraint firstAttribute="height" constant="28" id="WXa-MI-RTs"/>
                                                     </constraints>
                                                     <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                                     <nil key="textColor"/>
@@ -432,18 +463,16 @@
                                                 </label>
                                             </subviews>
                                             <constraints>
-                                                <constraint firstItem="2Ap-Kk-ogY" firstAttribute="leading" secondItem="qcM-ow-8Hc" secondAttribute="leading" constant="4" id="6nf-x4-IBj"/>
-                                                <constraint firstItem="Oos-2M-5w8" firstAttribute="top" secondItem="2Ap-Kk-ogY" secondAttribute="bottom" constant="8" id="9ZB-ch-QhC"/>
+                                                <constraint firstItem="Oos-2M-5w8" firstAttribute="top" secondItem="aqd-xf-ecg" secondAttribute="bottom" id="1Bn-22-y6W"/>
                                                 <constraint firstItem="Oos-2M-5w8" firstAttribute="leading" secondItem="qcM-ow-8Hc" secondAttribute="leading" id="GIZ-BO-uXn"/>
-                                                <constraint firstItem="2Ap-Kk-ogY" firstAttribute="top" secondItem="qcM-ow-8Hc" secondAttribute="top" constant="16" id="PAi-bK-XNr"/>
-                                                <constraint firstAttribute="bottom" secondItem="Oos-2M-5w8" secondAttribute="bottom" constant="8" id="V8z-P0-90l"/>
+                                                <constraint firstAttribute="bottom" secondItem="Oos-2M-5w8" secondAttribute="bottom" constant="8" id="fOI-pN-86c"/>
+                                                <constraint firstItem="aqd-xf-ecg" firstAttribute="leading" secondItem="qcM-ow-8Hc" secondAttribute="leading" id="g58-7g-xK3"/>
+                                                <constraint firstItem="aqd-xf-ecg" firstAttribute="top" secondItem="qcM-ow-8Hc" secondAttribute="top" id="hao-GK-Bcs"/>
                                                 <constraint firstAttribute="trailing" secondItem="Oos-2M-5w8" secondAttribute="trailing" id="kg4-mY-XMd"/>
-                                                <constraint firstAttribute="trailing" secondItem="2Ap-Kk-ogY" secondAttribute="trailing" constant="16" id="uk6-8l-vfV"/>
                                             </constraints>
                                         </tableViewCellContentView>
                                         <connections>
                                             <outlet property="contentsCollectionView" destination="Oos-2M-5w8" id="gu1-fV-Ovw"/>
-                                            <outlet property="titleLabel" destination="2Ap-Kk-ogY" id="2SG-22-sQz"/>
                                         </connections>
                                     </tableViewCell>
                                 </prototypes>
@@ -469,12 +498,12 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="9dN-tr-CIh" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="3071" y="-42"/>
+            <point key="canvasLocation" x="3069.5652173913045" y="-42.1875"/>
         </scene>
     </scenes>
     <resources>
         <image name="chevron.down" catalog="system" width="128" height="72"/>
-        <image name="magnifyingglass" catalog="system" width="128" height="115"/>
+        <image name="plus" catalog="system" width="128" height="113"/>
         <systemColor name="labelColor">
             <color white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
         </systemColor>
