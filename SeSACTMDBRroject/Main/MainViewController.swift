@@ -6,6 +6,7 @@
 //
 
 import UIKit
+import Kingfisher
 
 class MainViewController: UIViewController {
     
@@ -15,6 +16,9 @@ class MainViewController: UIViewController {
     var postImageList: [[String]] = []
     var movieTitle: [String] = ["비슷한 영화", "현재상영중인 영화", "인기영화"]
     let color: [UIColor] = [.systemPink, .lightGray, .brown, .green]
+    var bannerGanreDic: Dictionary<Int, String>?
+    var movieDataList: [MovieData]?
+    var ganreImageStringList: [String] = []
     
     //컬렉션 뷰 내부 셀안에 숫자
     
@@ -40,7 +44,7 @@ class MainViewController: UIViewController {
                 self.mainTableView.reloadData()
             }
         }
-    
+        
         print(postImageList)
     }
 }
@@ -84,11 +88,11 @@ extension MainViewController: UICollectionViewDelegate, UICollectionViewDataSour
         
         // 다차원 배열로 묶어서 인덱스를 비교하는 방법도 있음 -> 나중에 내가 알아볼 수 있을
         
-//                if collectionView == bannerCollectionView {
-//                    return color.count
-//                } else if collectionView.tag == section {
-//                    return postImageList[section].count
-//                }
+        //                if collectionView == bannerCollectionView {
+        //                    return color.count
+        //                } else if collectionView.tag == section {
+        //                    return postImageList[section].count
+        //                }
         
         if collectionView == bannerCollectionView {
             return color.count
@@ -106,8 +110,27 @@ extension MainViewController: UICollectionViewDelegate, UICollectionViewDataSour
         guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: CardCollectionViewCell.reuseIdentifier, for: indexPath) as? CardCollectionViewCell else { return UICollectionViewCell() }
         
         if collectionView == bannerCollectionView {
-            cell.cardView.posterImageView.backgroundColor = color[indexPath.item]
-        } else {
+//            cell.cardView.posterImageView.backgroundColor = color[indexPath.item]
+                
+                guard let bannerGanreDic = self.bannerGanreDic else {
+                   print("장르 키값오류")
+                    return UICollectionViewCell() }
+                guard let movieDataList = self.movieDataList else {
+                   print("무비리스트 못 가져옴")
+                    return UICollectionViewCell() }
+                
+                bannerGanreDic.forEach { key, value in
+                    movieDataList.forEach { movieDate in
+                        let ganreIntList = movieDate.ganre as! [Int]
+                        ganreIntList.contains(key) ? ganreImageStringList.append(movieDate.image) : print("장르에 따른 포스터 이미지 받아오기 에러")
+                    }
+                }
+                
+                ganreImageStringList.forEach { url in
+                    let url = URL(string: url)
+                    cell.cardView.posterImageView.kf.setImage(with: url)
+                }
+            } else {
             let url = URL(string: postImageList[collectionView.tag][indexPath.row])
             cell.cardView.posterImageView.kf.setImage(with: url)
         }
@@ -129,21 +152,52 @@ extension MainViewController: UICollectionViewDelegate, UICollectionViewDataSour
 
 extension MainViewController {
     func requestRecommandPostImage(completionHandler: @escaping ([[String]]) -> ()) {
-            
+        
         var postImageList: [[String]] = []
         
-            TrendManager.shared.requestRecommandPostImage(url: APIKey.SIMILARMOVIE) { value in
+        TrendManager.shared.requestRecommandPostImage(url: APIKey.SIMILARMOVIE) { value in
+            postImageList.append(value)
+            print("시밀러")
+            TrendManager.shared.requestRecommandPostImage(url: APIKey.NOWPLAY) { value in
                 postImageList.append(value)
-    print("시밀러")
-                TrendManager.shared.requestRecommandPostImage(url: APIKey.NOWPLAY) { value in
+                print("지금")
+                TrendManager.shared.requestRecommandPostImage(url: APIKey.POPULARMOVIE) { value in
                     postImageList.append(value)
-    print("지금")
-                    TrendManager.shared.requestRecommandPostImage(url: APIKey.POPULARMOVIE) { value in
-                        postImageList.append(value)
-                        print("인기")
-                        completionHandler(postImageList)
-                    }
+                    print("인기")
+                    completionHandler(postImageList)
                 }
             }
+        }
+    }
+}
+
+extension MainViewController {
+    
+    func collectionViewTEST(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
+       
+        guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: CardCollectionViewCell.reuseIdentifier, for: indexPath) as? CardCollectionViewCell else { return UICollectionViewCell() }
+        
+        if collectionView == bannerCollectionView {
+            
+            guard let bannerGanreDic = self.bannerGanreDic else {
+               print("장르 키값오류")
+                return UICollectionViewCell() }
+            guard let movieDataList = self.movieDataList else {
+               print("무비리스트 못 가져옴")
+                return UICollectionViewCell() }
+            
+            bannerGanreDic.forEach { key, value in
+                movieDataList.forEach { movieDate in
+                    let ganreIntList = movieDate.ganre as! [Int]
+                    ganreIntList.contains(key) ? ganreImageStringList.append(movieDate.image) : print("장르에 따른 포스터 이미지 받아오기 에러")
+                }
+            }
+            
+            ganreImageStringList.forEach { url in
+                let url = URL(string: url)
+                cell.cardView.posterImageView.kf.setImage(with: url)
+            }
+        }
+        return cell
     }
 }

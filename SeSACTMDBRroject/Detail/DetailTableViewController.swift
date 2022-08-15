@@ -41,6 +41,7 @@ class DetailTableViewController: UITableViewController {
             self.recommandMovieList = value
             DispatchQueue.main.async {
                 self.searchTableView.reloadData()
+                print(recommandURL)
                 
             }
         }
@@ -174,6 +175,7 @@ extension DetailTableViewController: UICollectionViewDelegate, UICollectionViewD
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: CardCollectionViewCell.reuseIdentifier, for: indexPath) as? CardCollectionViewCell else { return UICollectionViewCell() }
+        
         let url = URL(string: recommandMovieList[indexPath.item])
         cell.cardView.posterImageView.kf.setImage(with: url)
         

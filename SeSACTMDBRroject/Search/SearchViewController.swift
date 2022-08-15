@@ -12,14 +12,13 @@ import SwiftyJSON
 import Kingfisher
 
 class SearchViewController: UIViewController {
-    
-    @IBOutlet weak var collectionView: UICollectionView!
-    
     var list: [MovieData] = []
     var ganrelist: Dictionary<Int, String> = [:]
     var idList: [Int] = []
     var totalCount = 0
     var startPage = 1
+    
+    @IBOutlet weak var collectionView: UICollectionView!
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -53,12 +52,12 @@ class SearchViewController: UIViewController {
                 let rate = item["vote_average"].doubleValue
                 let title = item["title"].stringValue
                 let overView = item["overview"].stringValue
-                let movieganre = item["genre_ids"].arrayValue[0].intValue
+                let movieganres = item["genre_ids"].arrayValue
                 let backdropPath = APIKey.TMDBPOSTERIMAGE_W780 + item["backdrop_path"].stringValue
                 let id = item["id"].intValue
                 
                 // 값을 받음
-                let data = MovieData(releaseDate: releaseDate, image: image, backdropPath: backdropPath, ganre: movieganre, rate: rate, title: title, overView: overView, id: id)
+                let data = MovieData(releaseDate: releaseDate, image: image, backdropPath: backdropPath, ganre: movieganres, rate: rate, title: title, overView: overView, id: id)
                 
                 self.list.append(data)
                 print(APIKey.TMDBGENRE)
@@ -125,7 +124,7 @@ extension SearchViewController: UICollectionViewDelegate, UICollectionViewDataSo
         cell.rateNumberLabel.text = String(round((movie.rate * digit) / digit))
         cell.movieTitle.text = movie.title
         cell.overview.text = movie.overView
-        cell.ganre.text = ganrelist[movie.ganre] //악 됐다...
+        cell.ganre.text = ganrelist[movie.ganre[0].intValue] //악 됐다...
         cell.clipButton.addTarget(self, action: #selector(goClipLink), for: .touchUpInside)
         
         return cell
@@ -141,6 +140,7 @@ extension SearchViewController: UICollectionViewDelegate, UICollectionViewDataSo
     }
 }
 
+//MARK: 페이지 네이션
 extension SearchViewController: UICollectionViewDataSourcePrefetching {
     
     //셀이 화면에 보이기 직전에 필요한 리소스를 다운
@@ -207,6 +207,10 @@ extension SearchViewController { // 네비바 아이템 추가
 
         //        vc.modalPresentationStyle = .fullScreen
         //        present(vc, animated: true)
+        
+        //MARK: 값전달
+        vc.bannerGanreDic = self.ganrelist
+        vc.movieDataList = self.list
 
         self.navigationController?.pushViewController(vc, animated: true)
     }

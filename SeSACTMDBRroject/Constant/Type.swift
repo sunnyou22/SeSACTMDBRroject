@@ -6,13 +6,14 @@
 //
 
 import Foundation
+import SwiftyJSON
 
 
 struct MovieData {
     var releaseDate: String
     var image: String
     var backdropPath: String // 굳이 필요할까
-    var ganre: Int
+    var ganre: [JSON]
     var rate: Double
     var title: String
     var overView: String
