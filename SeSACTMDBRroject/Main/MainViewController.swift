@@ -12,13 +12,16 @@ class MainViewController: UIViewController {
     
     @IBOutlet weak var mainTableView: UITableView!
     @IBOutlet weak var bannerCollectionView: UICollectionView!
+    @IBOutlet weak var bannerTitle: UILabel!
     
     var postImageList: [[String]] = []
     var movieTitle: [String] = ["비슷한 영화", "현재상영중인 영화", "인기영화"]
     let color: [UIColor] = [.systemPink, .lightGray, .brown, .green]
     var bannerGanreDic: Dictionary<Int, String>?
     var movieDataList: [MovieData]?
-    var ganreImageStringList: [String] = []
+    var ganreImageStringDic: Dictionary<String, [String]> = [:]
+    var ganreImageStringDicList: [Dictionary<String, [String]>] = []
+//    var testGanre: (() -> Dictionary<String, [String]>)?
     
     //컬렉션 뷰 내부 셀안에 숫자
     
@@ -46,6 +49,19 @@ class MainViewController: UIViewController {
         }
         
         print(postImageList)
+    }
+    
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        var title = ""
+      
+        test()
+        
+        ganreImageStringDicList.randomElement()!.forEach({ key, value in
+            title = key
+        })
+    bannerTitle.text = "\(title) 장르 영화들"
+    bannerTitle.titleConfig()
     }
 }
 
@@ -95,7 +111,11 @@ extension MainViewController: UICollectionViewDelegate, UICollectionViewDataSour
         //                }
         
         if collectionView == bannerCollectionView {
-            return color.count
+            var count = 0
+            ganreImageStringDicList.randomElement()!.forEach({ key, value in
+               count = value.count
+            })
+            return count
         } else if collectionView.tag == 0 {
             return postImageList[collectionView.tag].count
         } else if collectionView.tag == 1 {
@@ -110,27 +130,30 @@ extension MainViewController: UICollectionViewDelegate, UICollectionViewDataSour
         guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: CardCollectionViewCell.reuseIdentifier, for: indexPath) as? CardCollectionViewCell else { return UICollectionViewCell() }
         
         if collectionView == bannerCollectionView {
-//            cell.cardView.posterImageView.backgroundColor = color[indexPath.item]
-                
-                guard let bannerGanreDic = self.bannerGanreDic else {
-                   print("장르 키값오류")
-                    return UICollectionViewCell() }
-                guard let movieDataList = self.movieDataList else {
-                   print("무비리스트 못 가져옴")
-                    return UICollectionViewCell() }
-                
-                bannerGanreDic.forEach { key, value in
-                    movieDataList.forEach { movieDate in
-                        let ganreIntList = movieDate.ganre as! [Int]
-                        ganreIntList.contains(key) ? ganreImageStringList.append(movieDate.image) : print("장르에 따른 포스터 이미지 받아오기 에러")
-                    }
-                }
-                
-                ganreImageStringList.forEach { url in
-                    let url = URL(string: url)
-                    cell.cardView.posterImageView.kf.setImage(with: url)
-                }
-            } else {
+            //            cell.cardView.posterImageView.backgroundColor = color[indexPath.item]
+            
+//            guard let bannerGanreDic = self.bannerGanreDic else {
+//                print("장르 키값오류")
+//                return UICollectionViewCell() }
+//            guard let movieDataList = self.movieDataList else {
+//                print("무비리스트 못 가져옴")
+//                return UICollectionViewCell() }
+//
+//            bannerGanreDic.forEach { key, value in
+//                movieDataList.forEach { movieDate in
+//                    movieDate.ganre.contains(key) ? ganreImageStringList.append(movieDate.image) : print("장르에 따른 포스터 이미지 받아오기 에러")
+//                }
+//            }
+            
+            let ganreImageStringList = test()
+            
+            let url: [[URL]] = ganreImageStringList.map { key, value in
+                value.map { url in
+                  URL(string: url)! }
+            }
+            
+            cell.cardView.posterImageView.kf.setImage(with: url[0][indexPath.item])
+        } else {
             let url = URL(string: postImageList[collectionView.tag][indexPath.row])
             cell.cardView.posterImageView.kf.setImage(with: url)
         }
@@ -173,31 +196,32 @@ extension MainViewController {
 
 extension MainViewController {
     
-    func collectionViewTEST(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
-       
-        guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: CardCollectionViewCell.reuseIdentifier, for: indexPath) as? CardCollectionViewCell else { return UICollectionViewCell() }
+    @discardableResult
+    func test() -> Dictionary<String, [String]> {
+        var imageList: [String] = []
+        guard let bannerGanreDic = self.bannerGanreDic else {
+            print("장르 키값오류")
+            return [:] }
+        guard let movieDataList = self.movieDataList else {
+            print("무비리스트 못 가져옴")
+            return [:] }
         
-        if collectionView == bannerCollectionView {
-            
-            guard let bannerGanreDic = self.bannerGanreDic else {
-               print("장르 키값오류")
-                return UICollectionViewCell() }
-            guard let movieDataList = self.movieDataList else {
-               print("무비리스트 못 가져옴")
-                return UICollectionViewCell() }
-            
-            bannerGanreDic.forEach { key, value in
-                movieDataList.forEach { movieDate in
-                    let ganreIntList = movieDate.ganre as! [Int]
-                    ganreIntList.contains(key) ? ganreImageStringList.append(movieDate.image) : print("장르에 따른 포스터 이미지 받아오기 에러")
-                }
-            }
-            
-            ganreImageStringList.forEach { url in
-                let url = URL(string: url)
-                cell.cardView.posterImageView.kf.setImage(with: url)
+        bannerGanreDic.forEach { id, ganre in
+            movieDataList.forEach { movieDate in
+                guard movieDate.ganre.contains(id) else { return }
+                    imageList.append(movieDate.image)
+                ganreImageStringDic.updateValue(imageList, forKey: ganre)
+                ganreImageStringDicList.append(ganreImageStringDic)
             }
         }
-        return cell
+        return ganreImageStringDic
+}
+}
+
+extension UILabel {
+   func titleConfig() {
+        self.textColor = .white
+        self.font = .systemFont(ofSize: 20, weight: .heavy)
+        self.backgroundColor = .clear
     }
 }

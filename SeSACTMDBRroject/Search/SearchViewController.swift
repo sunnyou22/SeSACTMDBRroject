@@ -52,7 +52,7 @@ class SearchViewController: UIViewController {
                 let rate = item["vote_average"].doubleValue
                 let title = item["title"].stringValue
                 let overView = item["overview"].stringValue
-                let movieganres = item["genre_ids"].arrayValue
+                let movieganres = item["genre_ids"].arrayValue.map { $0.intValue }
                 let backdropPath = APIKey.TMDBPOSTERIMAGE_W780 + item["backdrop_path"].stringValue
                 let id = item["id"].intValue
                 
@@ -124,7 +124,7 @@ extension SearchViewController: UICollectionViewDelegate, UICollectionViewDataSo
         cell.rateNumberLabel.text = String(round((movie.rate * digit) / digit))
         cell.movieTitle.text = movie.title
         cell.overview.text = movie.overView
-        cell.ganre.text = ganrelist[movie.ganre[0].intValue] //악 됐다...
+        cell.ganre.text = ganrelist[movie.ganre[0]] //악 됐다...
         cell.clipButton.addTarget(self, action: #selector(goClipLink), for: .touchUpInside)
         
         return cell
