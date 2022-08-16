@@ -28,7 +28,7 @@ class MapViewController: UIViewController {
     }
     
     // 지도 중심 기반
-    func setRegionAndAnnotation(center: CLLocationCoordinate2D, index: Int?) {
+     func setRegionAndAnnotation(center: CLLocationCoordinate2D, index: Int?) {
         let therterList = TheaterList()
        
         // 위치 위경도구하기

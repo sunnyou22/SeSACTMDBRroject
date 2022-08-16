@@ -16,21 +16,24 @@ class DetailTableViewCell: UITableViewCell {
     
     override func awakeFromNib() {
         super.awakeFromNib()
+        setfont()
+        setColor()
+        setSeparatorInset()
         
     }
     
     // 프로토콜로 만들기
-    func setfont() {
+   private func setfont() {
         castname.font = .subTitleBoldFont18
         character.font = .normalFont
     }
     
-    func setColor() {
+   private func setColor() {
         castname.textColor = .black
         character.textColor = .gray
     }
 
-    func setSeparatorInset() {
+   private func setSeparatorInset() {
         self.layoutMargins = UIEdgeInsets(top: 0, left: 20, bottom: 0, right: 0)
         self.separatorInset = UIEdgeInsets(top: 0, left: 20, bottom: 0, right: 0)
     }

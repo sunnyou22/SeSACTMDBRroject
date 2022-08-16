@@ -18,7 +18,7 @@ class RecommandTableViewCell: UITableViewCell {
 
    // 타이틀은 테이블뷰 섹션 헤더로 넣어주기
 
-    func collectionViewLayout() -> UICollectionViewFlowLayout {
+   private func collectionViewLayout() -> UICollectionViewFlowLayout {
         let layout = UICollectionViewFlowLayout()
         layout.scrollDirection = .horizontal
         layout .itemSize = CGSize(width: 140, height: 180)

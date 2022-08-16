@@ -85,14 +85,14 @@ class DetailTableViewController: UITableViewController {
             guard let castCell = tableView.dequeueReusableCell(withIdentifier: DetailTableViewCell.reuseIdentifier, for: indexPath) as? DetailTableViewCell else {
                 return UITableViewCell()
             }
-            castCell.setfont()
-            castCell.setColor()
+//            castCell.setfont()
+//            castCell.setColor()
             castCell.castImage.layer.cornerRadius = 10
             // Kingfisher -> 쓰지않고 이미지 받아오기
             castCell.castImage.kf.setImage(with: castIndex.image)
             castCell.castname.text = castIndex.name
             castCell.character.text = castIndex.roleNickname
-            castCell.setSeparatorInset()
+//            castCell.setSeparatorInset()
             
             return castCell
             
@@ -156,7 +156,7 @@ class DetailTableViewController: UITableViewController {
         }
     }
     
-    func setViewConfiguration() {
+  fileprivate func setViewConfiguration() {
         tableView.separatorInset = UIEdgeInsets(top: 0, left: 20, bottom: 0, right: 0)
         backdropPathImage.kf.setImage(with: URL(string: movieDataList!.backdropPath))
         print(movieDataList!.backdropPath,"-------------")

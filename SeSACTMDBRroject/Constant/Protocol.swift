@@ -5,7 +5,7 @@
 //  Created by 방선우 on 2022/08/04.
 //
 
-import Foundation
+
 import UIKit
 
 protocol ReusableIdentifier {

@@ -36,7 +36,7 @@ class CollectionViewCell: UICollectionViewCell {
         configureText()
     }
     
-    func setFont() {
+   private func setFont() {
         releaseDateLabel.font = .dateFont
         ganre.font = .systemBold20
         rateLabel.font = .normalFont
@@ -47,7 +47,7 @@ class CollectionViewCell: UICollectionViewCell {
     }
     
     //MARK: Label, View 컬러
-    func setColor() {
+   private func setColor() {
         ganre.textColor = .black
         rateLabel.textColor = .white
         rateNumberLabel.textColor = .black
@@ -62,14 +62,14 @@ class CollectionViewCell: UICollectionViewCell {
         rateNumberLabel.backgroundColor = .white
     }
     
-    func configureImage() {
+   private func configureImage() {
         posterImage.contentMode = .scaleAspectFill
         posterImage.clipsToBounds = true
         posterImage.layer.cornerRadius = cornerRadiusValue
         posterImage.layer.maskedCorners = CACornerMask(arrayLiteral: .layerMinXMinYCorner, .layerMaxXMinYCorner)
     }
     
-    func configureContainView() {
+    private func configureContainView() {
         containerView.layer.borderColor = UIColor.lightGray.cgColor
 //        containerView.layer.borderWidth = 0.2
         containerView.backgroundColor = .white
@@ -81,7 +81,7 @@ class CollectionViewCell: UICollectionViewCell {
         containerView.layer.shadowRadius = 8
     }
     
-    func configureButtonUI() {
+   private func configureButtonUI() {
         clipButton.setImage(UIImage(systemName: "paperclip"), for: .normal)
         clipButton.clipsToBounds = true
         clipButton.layer.cornerRadius = clipButton.bounds.height / 2
@@ -91,7 +91,7 @@ class CollectionViewCell: UICollectionViewCell {
         forDetailButton.tintColor = .black
     }
     
-    func configureText() {
+   private func configureText() {
         rateLabel.text = "평점"
         rateLabel.textAlignment = .center
         

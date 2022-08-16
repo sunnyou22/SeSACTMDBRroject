@@ -199,7 +199,7 @@ extension MainViewController {
 extension MainViewController {
     
     @discardableResult
-    func test() -> Dictionary<String, [String]> {
+   private func test() -> Dictionary<String, [String]> {
         var imageList: [String] = []
         guard let bannerGanreDic = self.bannerGanreDic else {
             print("장르 키값오류")
@@ -221,7 +221,7 @@ extension MainViewController {
 }
 
 extension UILabel {
-   func titleConfig() {
+  fileprivate func titleConfig() {
         self.textColor = .white
         self.font = .systemFont(ofSize: 20, weight: .heavy)
         self.backgroundColor = .clear

@@ -17,7 +17,7 @@ class CardCollectionViewCell: UICollectionViewCell {
     }
 
     //cardView에 채택
-    func setupUI() {
+   private func setupUI() {
         
         cardView.clipsToBounds = true
         cardView.backgroundColor = .clear
