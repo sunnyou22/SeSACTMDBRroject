@@ -23,6 +23,8 @@ class SearchViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        UserDefaultHelper.shared.First = true
+        
         //MARK: 화면 데이터 연결 및 페이지 네이션
         collectionView.prefetchDataSource = self
         collectionView.delegate = self

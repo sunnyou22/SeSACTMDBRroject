@@ -40,6 +40,7 @@ class UserDefaultHelper {
     
     enum Key: String {
         case movieID
+        case First
     }
     
     let userDefaults = UserDefaults.standard
@@ -49,6 +50,15 @@ class UserDefaultHelper {
         }
         set {
             userDefaults.set(newValue, forKey: Key.movieID.rawValue)
+        }
+    }
+    
+    var First: Bool {
+        get  {
+            return userDefaults.bool(forKey: Key.First.rawValue) 
+        }
+        set  {
+            userDefaults.set(newValue, forKey: Key.First.rawValue)
         }
     }
 }

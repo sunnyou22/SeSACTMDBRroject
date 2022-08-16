@@ -153,6 +153,8 @@ extension MainViewController: UICollectionViewDelegate, UICollectionViewDataSour
             }
             
             cell.cardView.posterImageView.kf.setImage(with: url[0][indexPath.item])
+            cell.cardView.posterImageView.contentMode = .scaleAspectFill
+            
         } else {
             let url = URL(string: postImageList[collectionView.tag][indexPath.row])
             cell.cardView.posterImageView.kf.setImage(with: url)

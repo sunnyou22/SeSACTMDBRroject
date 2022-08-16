@@ -401,7 +401,7 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" dataMode="prototypes" translatesAutoresizingMaskIntoConstraints="NO" id="tbO-4L-QAB">
-                                <rect key="frame" x="0.0" y="72" width="414" height="179"/>
+                                <rect key="frame" x="0.0" y="72" width="414" height="269"/>
                                 <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                                 <viewLayoutGuide key="contentLayoutGuide" id="1Ie-ml-9R2"/>
                                 <viewLayoutGuide key="frameLayoutGuide" id="u0i-CO-Wfk"/>
@@ -423,7 +423,7 @@
                                 </cells>
                             </collectionView>
                             <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="none" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="-1" estimatedSectionHeaderHeight="-1" sectionFooterHeight="-1" estimatedSectionFooterHeight="-1" translatesAutoresizingMaskIntoConstraints="NO" id="y2v-fy-QiK">
-                                <rect key="frame" x="0.0" y="251" width="414" height="645"/>
+                                <rect key="frame" x="0.0" y="341" width="414" height="555"/>
                                 <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                                 <prototypes>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="MainTableViewCell" rowHeight="232" id="DzR-ng-YfC" customClass="MainTableViewCell" customModule="SeSACTMDBRroject" customModuleProvider="target">
@@ -492,7 +492,7 @@
                             <constraint firstItem="y2v-fy-QiK" firstAttribute="leading" secondItem="czF-ID-ceA" secondAttribute="leading" id="1on-uG-6VR"/>
                             <constraint firstItem="czF-ID-ceA" firstAttribute="trailing" secondItem="tbO-4L-QAB" secondAttribute="trailing" id="1yJ-82-1A8"/>
                             <constraint firstItem="55d-2l-Jdm" firstAttribute="leading" secondItem="czF-ID-ceA" secondAttribute="leading" id="6ST-nX-lu5"/>
-                            <constraint firstItem="tbO-4L-QAB" firstAttribute="height" secondItem="sxJ-hT-Cbt" secondAttribute="height" multiplier="0.2" id="QPM-dC-ldv"/>
+                            <constraint firstItem="tbO-4L-QAB" firstAttribute="height" secondItem="sxJ-hT-Cbt" secondAttribute="height" multiplier="0.3" id="QPM-dC-ldv"/>
                             <constraint firstItem="tbO-4L-QAB" firstAttribute="top" secondItem="czF-ID-ceA" secondAttribute="top" constant="28" id="VLZ-HY-6Dh"/>
                             <constraint firstItem="55d-2l-Jdm" firstAttribute="top" secondItem="czF-ID-ceA" secondAttribute="top" id="Xwz-vg-NfG"/>
                             <constraint firstItem="czF-ID-ceA" firstAttribute="trailing" secondItem="y2v-fy-QiK" secondAttribute="trailing" id="aUo-C6-HuV"/>

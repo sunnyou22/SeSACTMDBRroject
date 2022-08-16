@@ -31,18 +31,19 @@ class DetailTableViewController: UITableViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         let recommandURL = APIKey.TMDBMOVIE + UserDefaultHelper.shared.movieID + "/recommendations?api_key=" + APIKey.TMDBAPI_ID + "&language=en-US&page=1"
-       
+       print(recommandURL)
+        
         requestPeopleData()
         setViewConfiguration()
         searchTableView.delegate = self
         searchTableView.dataSource = self
         tableView.rowHeight = UITableView.automaticDimension
+        
         TrendManager.shared.requestRecommandPostImage(url: recommandURL) { value in
             self.recommandMovieList = value
             DispatchQueue.main.async {
                 self.searchTableView.reloadData()
                 print(recommandURL)
-                
             }
         }
     }
@@ -75,6 +76,8 @@ class DetailTableViewController: UITableViewController {
             overViewCell.setFont()
             overViewCell.overview.text = movieDataList?.overView ?? "null"
             overViewCell.setSeparatorInset()
+            overViewCell.overview.numberOfLines = isExpanded ? 0 : 2
+            
             return overViewCell
             
         } else if indexPath.section == 1 {
