@@ -23,21 +23,21 @@ class WebViewController: UIViewController {
     let flexibleSpace = UIBarButtonItem(barButtonSystemItem: .fixedSpace, target: WebViewController.self, action: nil)
     var items = [UIBarButtonItem]()
     
-    var destinationURL = "https://m.daum.net/?nil_top=mobile"
+    var destinationURL = "https://www.youtube.com"
     
     override func viewDidLoad() {
         super.viewDidLoad()
         self.navigationController?.isToolbarHidden = false
         setButton()
-
+        
         self.toolbarItems = items
-openWebPage(urlstr: destinationURL)
-       
+        openWebPage()
+        
     }
     
     func setButton() {
         closeButton = UIBarButtonItem(image: UIImage(systemName: "xmark"), style: .plain, target: self, action: #selector(closeWebView))
-
+        
         backwardButton = UIBarButtonItem(image: UIImage(systemName: "arrow.counterclockwise"), style: .plain, target: self, action: #selector(gobackButtonCilcked))
         forwardButton = UIBarButtonItem(image: UIImage(systemName: "arrow.forward"), style: .plain, target: self, action: #selector(goforwardButton))
         reloadButton = UIBarButtonItem(image: UIImage(systemName: "arrow.backward"), style: .plain, target: self, action: #selector(reloadWebView))
@@ -45,8 +45,8 @@ openWebPage(urlstr: destinationURL)
             items.append($0)
         }
     }
-
-@objc
+    
+    @objc
     func gobackButtonCilcked() {
         if webview.canGoBack {
             webview.goBack()
@@ -70,31 +70,23 @@ openWebPage(urlstr: destinationURL)
         self.navigationController?.popViewController(animated: true)
     }
     
-    func openWebPage(urlstr: String) {
-        guard let url = URL(string: urlstr) else {
-            print("Invaild URL")
-            return
-        }
-                
-        let request = URLRequest(url: url)
-        webview.load(request)
-    }
-    
-    func requestVideo() {
-        let url = APIKey.TMDBMOVIE + UserDefaultHelper.shared.movieID + "videos?api_key=" + APIKey.TMDBAPI_ID + "&language=ko-KR"
-
-        AF.request(url, method: .get).validate().responseData { response in
-            switch response.result {
-            case .success(let value):
-                let json = JSON(value)
-                print("JSON: \(json)")
-             
-//                destinationURL = json["results"].map { $0["key"].st                }
-                
-            case .failure(let error):
-                print(error)
+    func openWebPage() {
+//        guard let url = URL(string: urlstr) else {
+//            print("Invaild URL")
+//            return
+//        }
+//
+//        let request = URLRequest(url: url)
+//        webview.load(request)
+        
+        TMDBVIDEOManager.shared.requestVideo { url in
+            guard let url = URL(string: url) else {
+                print("알 수 없는 URL")
+                return
             }
-            
+            let request = URLRequest(url: url)
+            self.webview.load(request)
         }
+        
     }
 }

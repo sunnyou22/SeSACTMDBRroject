@@ -58,3 +58,39 @@ import Foundation
          }
  }
 
+class TMDBVIDEOManager {
+    
+    static let shared = TMDBVIDEOManager()
+    
+    private init() { }
+    
+    func requestVideo(completionHandler: @escaping (String) -> ()) {
+        // 같은 코드인데 안됨
+//         APIKey.TMDBMOVIE + UserDefaultHelper.shared.movieID + "videos?api_key=" + APIKey.TMDBAPI_ID + "&language=ko-KR"
+        
+        let url = "\(APIKey.TMDBMOVIE)\(UserDefaultHelper.shared.movieID)/videos?api_key=\(APIKey.TMDBAPI_ID)&language=ko=KR"
+        
+        AF.request(url, method: .get).validate().responseData { response in
+            switch response.result {
+            case .success(let value):
+                let json = JSON(value)
+                print("==========JSON: \(json)")
+                
+                var videoURL = ""
+                let videoKey = json["results"][0]["key"].stringValue
+                let site = json["results"][0]["site"].stringValue
+                
+                if site == "YouTube" {
+                    videoURL = "https://www.youtube.com/watch?v=" + videoKey
+                } else if site == "Vimeo" {
+                    videoURL = "https://vimeo.com/" + videoKey
+                }
+                
+                completionHandler(videoURL)
+            case .failure(let error):
+                print(error)
+            }
+            
+        }
+    }
+}

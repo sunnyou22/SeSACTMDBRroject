@@ -16,6 +16,8 @@
 		9030386228ABB98F00538713 /* APIKey.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9030386128ABB98F00538713 /* APIKey.swift */; };
 		9050602A28ABEAD700012770 /* CustomFrameWork.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9050602628ABEAC900012770 /* CustomFrameWork.framework */; };
 		9050602B28ABEAD700012770 /* CustomFrameWork.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 9050602628ABEAC900012770 /* CustomFrameWork.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
+		9051E20328ACBA8D005FE811 /* SnapKit in Frameworks */ = {isa = PBXBuildFile; productRef = 9051E20228ACBA8D005FE811 /* SnapKit */; };
+		9051E20828ACBE62005FE811 /* ContainViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9051E20728ACBE62005FE811 /* ContainViewController.swift */; };
 		905C8FFC28A4E4B500F367C7 /* MapViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 905C8FFB28A4E4B500F367C7 /* MapViewController.swift */; };
 		90A837F92899F7BA00D61D88 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 90A837F82899F7BA00D61D88 /* AppDelegate.swift */; };
 		90A837FB2899F7BA00D61D88 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 90A837FA2899F7BA00D61D88 /* SceneDelegate.swift */; };
@@ -87,6 +89,7 @@
 		9030377E28AB987900538713 /* ThirdViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ThirdViewController.swift; sourceTree = "<group>"; };
 		9030386128ABB98F00538713 /* APIKey.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = APIKey.swift; sourceTree = "<group>"; };
 		9050602028ABEAC900012770 /* CustomFrameWork.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = CustomFrameWork.xcodeproj; path = ../CustomFrameWork/CustomFrameWork.xcodeproj; sourceTree = "<group>"; };
+		9051E20728ACBE62005FE811 /* ContainViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContainViewController.swift; sourceTree = "<group>"; };
 		905C8FFB28A4E4B500F367C7 /* MapViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MapViewController.swift; sourceTree = "<group>"; };
 		90A837F52899F7BA00D61D88 /* SeSACTMDBRroject.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = SeSACTMDBRroject.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		90A837F82899F7BA00D61D88 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
@@ -126,6 +129,7 @@
 				90A8382E289AA60700D61D88 /* SwiftyJSON in Frameworks */,
 				9050602A28ABEAD700012770 /* CustomFrameWork.framework in Frameworks */,
 				90A8382B289AA5C300D61D88 /* Alamofire in Frameworks */,
+				9051E20328ACBA8D005FE811 /* SnapKit in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -164,6 +168,7 @@
 			isa = PBXGroup;
 			children = (
 				9030377428AB978B00538713 /* Intro.storyboard */,
+				9051E20728ACBE62005FE811 /* ContainViewController.swift */,
 				9030377628AB983D00538713 /* IntroViewController.swift */,
 				9030377C28AB986300538713 /* FirstViewController.swift */,
 				9030377A28AB985900538713 /* SecondViewController.swift */,
@@ -332,6 +337,7 @@
 				90A8382A289AA5C300D61D88 /* Alamofire */,
 				90A8382D289AA60700D61D88 /* SwiftyJSON */,
 				90A8383D289AF48000D61D88 /* Kingfisher */,
+				9051E20228ACBA8D005FE811 /* SnapKit */,
 			);
 			productName = SeSACTMDBRroject;
 			productReference = 90A837F52899F7BA00D61D88 /* SeSACTMDBRroject.app */;
@@ -365,6 +371,7 @@
 				90A83829289AA5C300D61D88 /* XCRemoteSwiftPackageReference "Alamofire" */,
 				90A8382C289AA60700D61D88 /* XCRemoteSwiftPackageReference "SwiftyJSON" */,
 				90A8383C289AF48000D61D88 /* XCRemoteSwiftPackageReference "Kingfisher" */,
+				9051E20128ACBA8D005FE811 /* XCRemoteSwiftPackageReference "SnapKit" */,
 			);
 			productRefGroup = 90A837F62899F7BA00D61D88 /* Products */;
 			projectDirPath = "";
@@ -436,6 +443,7 @@
 				90DA0FB728A388AC00616F9D /* IBInspectable.swift in Sources */,
 				90DA0FB328A3886E00616F9D /* CardCollectionViewCell.swift in Sources */,
 				90DA0FBB28A388C300616F9D /* MainTableViewCell.swift in Sources */,
+				9051E20828ACBE62005FE811 /* ContainViewController.swift in Sources */,
 				90A837FB2899F7BA00D61D88 /* SceneDelegate.swift in Sources */,
 				90C21F16289C596500F1AF0F /* DetailTableViewController.swift in Sources */,
 				90C21F1D289E3F3600F1AF0F /* OverVeiwTableViewCell.swift in Sources */,
@@ -665,6 +673,14 @@
 /* End XCConfigurationList section */
 
 /* Begin XCRemoteSwiftPackageReference section */
+		9051E20128ACBA8D005FE811 /* XCRemoteSwiftPackageReference "SnapKit" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/SnapKit/SnapKit";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 5.0.0;
+			};
+		};
 		90A83829289AA5C300D61D88 /* XCRemoteSwiftPackageReference "Alamofire" */ = {
 			isa = XCRemoteSwiftPackageReference;
 			repositoryURL = "https://github.com/Alamofire/Alamofire.git";
@@ -692,6 +708,11 @@
 /* End XCRemoteSwiftPackageReference section */
 
 /* Begin XCSwiftPackageProductDependency section */
+		9051E20228ACBA8D005FE811 /* SnapKit */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 9051E20128ACBA8D005FE811 /* XCRemoteSwiftPackageReference "SnapKit" */;
+			productName = SnapKit;
+		};
 		90A8382A289AA5C300D61D88 /* Alamofire */ = {
 			isa = XCSwiftPackageProductDependency;
 			package = 90A83829289AA5C300D61D88 /* XCRemoteSwiftPackageReference "Alamofire" */;

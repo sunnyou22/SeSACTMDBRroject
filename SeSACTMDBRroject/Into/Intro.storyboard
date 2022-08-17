@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="20037" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="Y6W-OH-hqX">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="20037" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="9ap-HX-sO9">
     <device id="retina6_1" orientation="portrait" appearance="light"/>
     <dependencies>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="20020"/>
@@ -8,13 +8,56 @@
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <scenes>
+        <!--Contain View Controller-->
+        <scene sceneID="CkV-ql-tUy">
+            <objects>
+                <viewController storyboardIdentifier="ContainViewController" id="9ap-HX-sO9" customClass="ContainViewController" customModule="SeSACTMDBRroject" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="iMz-Uz-usP">
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <containerView opaque="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="nUM-KP-Nfk">
+                                <rect key="frame" x="0.0" y="0.0" width="414" height="627"/>
+                                <connections>
+                                    <segue destination="SXr-Y3-Tle" kind="embed" id="tT8-9V-MWw"/>
+                                </connections>
+                            </containerView>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="crL-Il-3li">
+                                <rect key="frame" x="20" y="687" width="374" height="60"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="60" id="keJ-yV-3jU"/>
+                                </constraints>
+                                <state key="normal" title="Button"/>
+                                <buttonConfiguration key="configuration" style="plain" title="Button"/>
+                            </button>
+                        </subviews>
+                        <viewLayoutGuide key="safeArea" id="p2o-aV-fJi"/>
+                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                        <constraints>
+                            <constraint firstItem="nUM-KP-Nfk" firstAttribute="height" secondItem="iMz-Uz-usP" secondAttribute="height" multiplier="0.7" id="GSR-2D-76m"/>
+                            <constraint firstItem="p2o-aV-fJi" firstAttribute="trailing" secondItem="crL-Il-3li" secondAttribute="trailing" constant="20" id="OO9-qe-PNQ"/>
+                            <constraint firstItem="p2o-aV-fJi" firstAttribute="trailing" secondItem="nUM-KP-Nfk" secondAttribute="trailing" id="QF0-Fj-Lqa"/>
+                            <constraint firstItem="crL-Il-3li" firstAttribute="leading" secondItem="p2o-aV-fJi" secondAttribute="leading" constant="20" id="SRb-Ke-NiB"/>
+                            <constraint firstItem="crL-Il-3li" firstAttribute="top" secondItem="nUM-KP-Nfk" secondAttribute="bottom" constant="60" id="cPv-81-Q6c"/>
+                            <constraint firstItem="nUM-KP-Nfk" firstAttribute="leading" secondItem="p2o-aV-fJi" secondAttribute="leading" id="sdT-tb-X13"/>
+                            <constraint firstItem="nUM-KP-Nfk" firstAttribute="top" secondItem="iMz-Uz-usP" secondAttribute="top" id="uxR-Rj-zgK"/>
+                        </constraints>
+                    </view>
+                    <connections>
+                        <outlet property="startButton" destination="crL-Il-3li" id="GjH-zE-xz0"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="fsL-G1-KFA" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="-1706" y="54"/>
+        </scene>
         <!--Intro View Controller-->
         <scene sceneID="ZSy-cR-ceE">
             <objects>
                 <pageViewController storyboardIdentifier="IntroViewController" autoresizesArchivedViewToFullSize="NO" transitionStyle="scroll" navigationOrientation="horizontal" spineLocation="none" id="SXr-Y3-Tle" customClass="IntroViewController" customModule="SeSACTMDBRroject" customModuleProvider="target" sceneMemberID="viewController"/>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="UJn-Dn-TRD" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-528" y="54"/>
+            <point key="canvasLocation" x="-929" y="54"/>
         </scene>
         <!--First View Controller-->
         <scene sceneID="s0d-6b-0kx">
@@ -53,27 +96,9 @@
                     <view key="view" contentMode="scaleToFill" id="j33-3d-ORE">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                        <subviews>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Cjn-HZ-fkD">
-                                <rect key="frame" x="20" y="762" width="374" height="50"/>
-                                <constraints>
-                                    <constraint firstAttribute="height" constant="50" id="1GW-sI-pk9"/>
-                                </constraints>
-                                <state key="normal" title="Button"/>
-                                <buttonConfiguration key="configuration" style="plain" title="Button"/>
-                            </button>
-                        </subviews>
                         <viewLayoutGuide key="safeArea" id="mcv-Yn-OKi"/>
                         <color key="backgroundColor" red="0.29196789581501847" green="0.31386146707355789" blue="0.40683399086378735" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
-                        <constraints>
-                            <constraint firstItem="mcv-Yn-OKi" firstAttribute="trailing" secondItem="Cjn-HZ-fkD" secondAttribute="trailing" constant="20" id="LtM-MV-AV5"/>
-                            <constraint firstItem="Cjn-HZ-fkD" firstAttribute="leading" secondItem="mcv-Yn-OKi" secondAttribute="leading" constant="20" id="ZQy-6w-7NY"/>
-                            <constraint firstItem="mcv-Yn-OKi" firstAttribute="bottom" secondItem="Cjn-HZ-fkD" secondAttribute="bottom" constant="50" id="ZeR-tV-0X0"/>
-                        </constraints>
                     </view>
-                    <connections>
-                        <outlet property="startButton" destination="Cjn-HZ-fkD" id="EDQ-Yh-Atr"/>
-                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="seZ-ix-HKg" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
@@ -81,6 +106,9 @@
         </scene>
     </scenes>
     <resources>
+        <systemColor name="systemBackgroundColor">
+            <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+        </systemColor>
         <systemColor name="systemBrownColor">
             <color red="0.63529411764705879" green="0.51764705882352946" blue="0.36862745098039218" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
         </systemColor>

@@ -67,7 +67,7 @@ extension IntroViewController: UIPageViewControllerDelegate, UIPageViewControlle
     
     func presentationIndex(for pageViewController: UIPageViewController) -> Int {
         
-        // 현재화면에서 보이고 있는 뷰가 첫번째 뷰냐? ㅇㅇ, 오케 그럼 그 뷰 인덱스 가져와
+        // 현재화면에서 보이고 있는 뷰가 첫번째 뷰냐?  = 뷰가 있냐 /ㅇㅇ, 오케 그럼 그 뷰 인덱스 가져와
         guard let first = viewControllers?.first, let index = pageViewControllerList.firstIndex(of: first) else { return 0 }
         return index
     }

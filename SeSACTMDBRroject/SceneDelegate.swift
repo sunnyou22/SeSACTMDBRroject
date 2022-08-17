@@ -16,14 +16,17 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
         window = UIWindow(windowScene: scene)
         
         if UserDefaultHelper.shared.First {
-            let sb = UIStoryboard(name: "Intro", bundle: nil)
-            guard let vc = sb.instantiateViewController(withIdentifier: IntroViewController.reuseIdentifier) as? IntroViewController else { return }
-            
-            
-            window?.rootViewController = UINavigationController(rootViewController: vc)
-        } else {
+           
             let sb = UIStoryboard(name: "Main", bundle: nil)
             guard let vc = sb.instantiateViewController(withIdentifier: SearchViewController.reuseIdentifier) as? SearchViewController else { return }
+            
+            window?.rootViewController = UINavigationController(rootViewController: vc)
+
+        } else {
+            
+            let sb = UIStoryboard(name: "Intro", bundle: nil)
+            guard let vc = sb.instantiateViewController(withIdentifier: ContainViewController.reuseIdentifier) as? ContainViewController else { return }
+            
             
             window?.rootViewController = UINavigationController(rootViewController: vc)
         }

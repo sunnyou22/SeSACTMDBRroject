@@ -8,18 +8,18 @@
 
 import UIKit
 
-protocol ReusableIdentifier {
-    static var reuseIdentifier: String { get }
-}
-
-extension UIViewController: ReusableIdentifier {
-    static var reuseIdentifier: String {
-        return String(describing: self)
-    }
-}
-
-extension UIView: ReusableIdentifier {
-    static var reuseIdentifier: String {
-        String(describing: self)
-    }
-}
+//protocol ReusableIdentifier {
+//    static var reuseIdentifier: String { get }
+//}
+//
+//extension UIViewController: ReusableIdentifier {
+//    static var reuseIdentifier: String {
+//        return String(describing: self)
+//    }
+//}
+//
+//extension UIView: ReusableIdentifier {
+//    static var reuseIdentifier: String {
+//        String(describing: self)
+//    }
+//}

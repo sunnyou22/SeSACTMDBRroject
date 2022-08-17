@@ -346,24 +346,28 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <wkWebView contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="xiJ-qz-g8g">
-                                <rect key="frame" x="0.0" y="44" width="414" height="818"/>
+                                <rect key="frame" x="0.0" y="95" width="414" height="767"/>
                                 <color key="backgroundColor" red="0.36078431370000003" green="0.38823529410000002" blue="0.4039215686" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <wkWebViewConfiguration key="configuration">
                                     <audiovisualMediaTypes key="mediaTypesRequiringUserActionForPlayback" none="YES"/>
                                     <wkPreferences key="preferences"/>
                                 </wkWebViewConfiguration>
                             </wkWebView>
+                            <searchBar contentMode="redraw" translatesAutoresizingMaskIntoConstraints="NO" id="QOJ-Cy-ksV">
+                                <rect key="frame" x="0.0" y="44" width="414" height="51"/>
+                                <textInputTraits key="textInputTraits"/>
+                            </searchBar>
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="VXs-zM-Yqx"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                         <constraints>
-                            <constraint firstItem="xiJ-qz-g8g" firstAttribute="leading" secondItem="VXs-zM-Yqx" secondAttribute="leading" id="52W-Kt-xAY"/>
-                            <constraint firstItem="xiJ-qz-g8g" firstAttribute="trailing" secondItem="VXs-zM-Yqx" secondAttribute="trailing" id="5I2-Gj-gvp"/>
-                            <constraint firstItem="xiJ-qz-g8g" firstAttribute="top" secondItem="VXs-zM-Yqx" secondAttribute="top" id="9So-kE-3qm"/>
-                            <constraint firstItem="VXs-zM-Yqx" firstAttribute="bottom" secondItem="xiJ-qz-g8g" secondAttribute="bottom" id="SKv-gO-Ygc"/>
-                            <constraint firstItem="xiJ-qz-g8g" firstAttribute="top" secondItem="VXs-zM-Yqx" secondAttribute="top" id="Y7E-W0-ePl"/>
-                            <constraint firstItem="xiJ-qz-g8g" firstAttribute="leading" secondItem="VXs-zM-Yqx" secondAttribute="leading" id="dJv-ih-PZX"/>
-                            <constraint firstItem="VXs-zM-Yqx" firstAttribute="trailing" secondItem="xiJ-qz-g8g" secondAttribute="trailing" id="y00-ol-eTM"/>
+                            <constraint firstAttribute="trailing" secondItem="QOJ-Cy-ksV" secondAttribute="trailing" id="Avd-aj-Wr3"/>
+                            <constraint firstItem="xiJ-qz-g8g" firstAttribute="leading" secondItem="VXs-zM-Yqx" secondAttribute="leading" id="CTr-Xd-531"/>
+                            <constraint firstItem="xiJ-qz-g8g" firstAttribute="top" secondItem="QOJ-Cy-ksV" secondAttribute="bottom" id="PWN-EF-sEo"/>
+                            <constraint firstItem="QOJ-Cy-ksV" firstAttribute="leading" secondItem="VXs-zM-Yqx" secondAttribute="leading" id="VkZ-2h-2qa"/>
+                            <constraint firstItem="QOJ-Cy-ksV" firstAttribute="top" secondItem="VXs-zM-Yqx" secondAttribute="top" id="Xgt-F2-3Lm"/>
+                            <constraint firstItem="xiJ-qz-g8g" firstAttribute="bottom" secondItem="VXs-zM-Yqx" secondAttribute="bottom" id="anU-tT-zUU"/>
+                            <constraint firstItem="xiJ-qz-g8g" firstAttribute="trailing" secondItem="VXs-zM-Yqx" secondAttribute="trailing" id="qNX-Vz-y0A"/>
                         </constraints>
                     </view>
                     <connections>
@@ -372,7 +376,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="okC-h9-qNq" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="2237" y="-39"/>
+            <point key="canvasLocation" x="2234.7826086956525" y="-39.508928571428569"/>
         </scene>
         <!--Navigation Controller-->
         <scene sceneID="U8B-jS-tWq">
