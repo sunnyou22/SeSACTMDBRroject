@@ -16,6 +16,8 @@
 		9030386228ABB98F00538713 /* APIKey.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9030386128ABB98F00538713 /* APIKey.swift */; };
 		9051E20328ACBA8D005FE811 /* SnapKit in Frameworks */ = {isa = PBXBuildFile; productRef = 9051E20228ACBA8D005FE811 /* SnapKit */; };
 		9051E20828ACBE62005FE811 /* ContainViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9051E20728ACBE62005FE811 /* ContainViewController.swift */; };
+		9051E26428AEA79B005FE811 /* CustomFrameWork.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9051E22828ADB09E005FE811 /* CustomFrameWork.framework */; };
+		9051E26528AEA79B005FE811 /* CustomFrameWork.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 9051E22828ADB09E005FE811 /* CustomFrameWork.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		905C8FFC28A4E4B500F367C7 /* MapViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 905C8FFB28A4E4B500F367C7 /* MapViewController.swift */; };
 		90A837F92899F7BA00D61D88 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 90A837F82899F7BA00D61D88 /* AppDelegate.swift */; };
 		90A837FB2899F7BA00D61D88 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 90A837FA2899F7BA00D61D88 /* SceneDelegate.swift */; };
@@ -71,6 +73,7 @@
 			dstPath = "";
 			dstSubfolderSpec = 10;
 			files = (
+				9051E26528AEA79B005FE811 /* CustomFrameWork.framework in Embed Frameworks */,
 			);
 			name = "Embed Frameworks";
 			runOnlyForDeploymentPostprocessing = 0;
@@ -122,6 +125,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				9051E26428AEA79B005FE811 /* CustomFrameWork.framework in Frameworks */,
 				90A8383E289AF48000D61D88 /* Kingfisher in Frameworks */,
 				90A8382E289AA60700D61D88 /* SwiftyJSON in Frameworks */,
 				90A8382B289AA5C300D61D88 /* Alamofire in Frameworks */,

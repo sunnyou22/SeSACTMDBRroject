@@ -11,8 +11,6 @@ import WebKit
 import Alamofire
 import SwiftyJSON
 
-import CustomFrameWork
-
 class WebViewController: UIViewController {
     @IBOutlet weak var webview: WKWebView!
     

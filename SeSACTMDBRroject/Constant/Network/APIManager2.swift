@@ -78,4 +78,54 @@ import Foundation
     }
  }
 
-//"\(APIKey.TMDBMOVIE)\(UserDefaultHelper.shared.movieID)/videos?api_key=\(APIKey.TMDBAPI_ID)&language=ko=KR"
+//MARK: 서버통신
+extension SearchViewController {
+    
+    func requestTMDBData() {
+        
+        TrendManager.shared.callRequest(url: APIKey.TMDBAPI + APIKey.TMDBAPI_ID) { [self] json in
+            print("JSON: \(json)")
+            requestTMDBTrendingData(json: json)
+            TrendManager.shared.callRequest(url: APIKey.TMDBGENRE) { [self] json in
+                print("JSON: \(json)")
+                requestGanre(json: json)
+            }
+        }
+        DispatchQueue.main.async {
+            self.collectionView.reloadData()
+        }
+    }
+    
+    //trending 및 ganre 받아오는 메서드들
+    func requestTMDBTrendingData(json: JSON) {
+        
+        for item in json["results"].arrayValue {
+            let image = APIKey.TMDBBACGROUNDIMAGE_W500 + item["poster_path"].stringValue
+            let releaseDate = item["release_date"].stringValue
+            let rate = item["vote_average"].doubleValue
+            let title = item["title"].stringValue
+            let overView = item["overview"].stringValue
+            let movieganres = item["genre_ids"].arrayValue.map { $0.intValue }
+            let backdropPath = APIKey.TMDBPOSTERIMAGE_W780 + item["backdrop_path"].stringValue
+            let id = item["id"].intValue
+            
+            // 값을 받음
+            let data = MovieData(releaseDate: releaseDate, image: image, backdropPath: backdropPath, ganre: movieganres, rate: rate, title: title, overView: overView, id: id)
+            
+            self.list.append(data)
+            self.totalCount = json["total_results"].intValue
+            
+            print(APIKey.TMDBGENRE)
+        }
+    }
+    
+    func requestGanre(json: JSON) {
+        
+        for i in json["genres"].arrayValue {
+            let ganreID = i["id"].intValue
+            let ganreName = i["name"].stringValue
+            self.ganrelist.updateValue(ganreName, forKey: ganreID)
+            self.idList.append(ganreID)
+        }
+    }
+}
