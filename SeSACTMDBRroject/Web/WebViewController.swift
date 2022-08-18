@@ -22,16 +22,25 @@ class WebViewController: UIViewController {
     var reloadButton: UIBarButtonItem!
     let flexibleSpace = UIBarButtonItem(barButtonSystemItem: .fixedSpace, target: WebViewController.self, action: nil)
     var items = [UIBarButtonItem]()
+    var flag: Bool {
+        get {
+            UserDefaultHelper.shared.clipstate
+        }
+        set {
+            UserDefaultHelper.shared.clipstate = newValue
+        }
+    }
     
-    var destinationURL = "https://www.youtube.com"
+    var clipButtonActionHandler: ((Bool) -> ())?
     
     override func viewDidLoad() {
         super.viewDidLoad()
         self.navigationController?.isToolbarHidden = false
+        navigationItem.rightBarButtonItem = UIBarButtonItem(title: "클립", style: .plain, target: self, action: #selector(clikedClip))
+        
         setButton()
         
         self.toolbarItems = items
-        
         
         TrendManager.shared.callRequest(url: "\(APIKey.TMDBMOVIE)\(UserDefaultHelper.shared.movieID)/videos?api_key=\(APIKey.TMDBAPI_ID)&language=ko=KR") { json in
             TrendManager.shared.requestVideo(json: json) { url in
@@ -39,6 +48,27 @@ class WebViewController: UIViewController {
             }
         }
         
+    }
+    
+    //MARK: 클립 bool상태 바꾸기 코드
+    @objc
+    func clikedClip() {
+        let alert = UIAlertController(title: "보고싶은 영화", message: "현재 영화를 클립하시겠습니까?", preferredStyle: .alert)
+        let ok = UIAlertAction(title: "OK", style: .default) { [self]_ in
+            flag = true
+            print(flag)
+            self.clipButtonActionHandler?(flag)
+        }
+        let no = UIAlertAction(title: "NO", style: .destructive) { [self] _ in
+            flag = false
+            print(flag)
+            self.clipButtonActionHandler?(flag)
+        }
+        alert.addAction(ok)
+        alert.addAction(no)
+        
+        present(alert, animated: true) {
+        }
     }
     
     func setButton() {

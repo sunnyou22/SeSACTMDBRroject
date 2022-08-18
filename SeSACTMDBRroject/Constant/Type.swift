@@ -41,6 +41,7 @@ class UserDefaultHelper {
     enum Key: String {
         case movieID
         case First
+        case clipstate
     }
     
     let userDefaults = UserDefaults.standard
@@ -59,6 +60,14 @@ class UserDefaultHelper {
         }
         set  {
             userDefaults.set(newValue, forKey: Key.First.rawValue)
+        }
+    }
+    var clipstate: Bool {
+        get {
+            return userDefaults.bool(forKey: Key.clipstate.rawValue)
+        }
+        set {
+            userDefaults.set(newValue, forKey: Key.clipstate.rawValue)
         }
     }
 }

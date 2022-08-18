@@ -17,6 +17,11 @@ class SearchViewController: UIViewController {
     var idList: [Int] = []
     var totalCount = 0
     var startPage = 1
+    var testbutton: UIButton? {
+        didSet {
+            collectionView.reloadData()
+        }
+    }
     
     @IBOutlet weak var collectionView: UICollectionView!
     
@@ -126,8 +131,9 @@ extension SearchViewController: UICollectionViewDelegate, UICollectionViewDataSo
         cell.rateNumberLabel.text = String(round((movie.rate * digit) / digit))
         cell.movieTitle.text = movie.title
         cell.overview.text = movie.overView
-        cell.ganre.text = ganrelist[movie.ganre[0]] //악 됐다...
+        cell.ganre.text = ganrelist[movie.ganre[0]]
         cell.clipButton.addTarget(self, action: #selector(goClipLink), for: .touchUpInside)
+        testbutton = cell.clipButton
         
         return cell
     }
@@ -192,6 +198,13 @@ extension SearchViewController { // 네비바 아이템 추가
     func goClipLink() {
         let sb = UIStoryboard(name: "Main", bundle: nil)
         guard let vc = sb.instantiateViewController(withIdentifier: WebViewController.reuseIdentifier) as? WebViewController else { return }
+        
+        //MARK: 함수 실행해주기
+        vc.clipButtonActionHandler = { flag in
+            print(UserDefaultHelper.shared.clipstate)
+            self.testbutton?.backgroundColor = flag ? #colorLiteral(red: 0.9098039269, green: 0.4784313738, blue: 0.6431372762, alpha: 1) :  .white
+        }
+        
         self.navigationController?.pushViewController(vc, animated: true)
     }
     

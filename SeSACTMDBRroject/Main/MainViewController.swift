@@ -199,7 +199,7 @@ extension MainViewController {
 extension MainViewController {
     
     @discardableResult
-   private func test() -> Dictionary<String, [String]> {
+   private func  test() -> Dictionary<String, [String]> {
         var imageList: [String] = []
         guard let bannerGanreDic = self.bannerGanreDic else {
             print("장르 키값오류")
