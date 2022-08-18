@@ -31,7 +31,13 @@ class WebViewController: UIViewController {
         setButton()
         
         self.toolbarItems = items
-        openWebPage()
+        
+        
+        TrendManager.shared.callRequest(url: "\(APIKey.TMDBMOVIE)\(UserDefaultHelper.shared.movieID)/videos?api_key=\(APIKey.TMDBAPI_ID)&language=ko=KR") { json in
+            TrendManager.shared.requestVideo(json: json) { url in
+                self.openWebPage(url: url)
+            }
+        }
         
     }
     
@@ -70,23 +76,13 @@ class WebViewController: UIViewController {
         self.navigationController?.popViewController(animated: true)
     }
     
-    func openWebPage() {
-//        guard let url = URL(string: urlstr) else {
-//            print("Invaild URL")
-//            return
-//        }
-//
-//        let request = URLRequest(url: url)
-//        webview.load(request)
+    func openWebPage(url: String) {
         
-        TMDBVIDEOManager.shared.requestVideo { url in
-            guard let url = URL(string: url) else {
-                print("알 수 없는 URL")
-                return
-            }
-            let request = URLRequest(url: url)
-            self.webview.load(request)
+        guard let url = URL(string: url) else {
+            print("알 수 없는 URL")
+            return
         }
-        
+        let request = URLRequest(url: url)
+        self.webview.load(request)
     }
 }
