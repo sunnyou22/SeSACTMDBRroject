@@ -74,8 +74,8 @@ class CollectionViewCell: UICollectionViewCell {
 //        containerView.layer.borderWidth = 0.2
         containerView.backgroundColor = .white
         containerView.layer.cornerRadius = cornerRadiusValue
-//        containerView.clipsToBounds = false
-        containerView.layer.masksToBounds = false
+        containerView.clipsToBounds = false
+//        containerView.layer.masksToBounds = false
         containerView.layer.shadowOpacity = 0.4
         containerView.layer.shadowOffset = CGSize.zero
         containerView.layer.shadowRadius = 8

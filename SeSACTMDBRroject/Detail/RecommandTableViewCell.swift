@@ -18,10 +18,10 @@ class RecommandTableViewCell: UITableViewCell {
 
    // 타이틀은 테이블뷰 섹션 헤더로 넣어주기
 
-   private func collectionViewLayout() -> UICollectionViewFlowLayout {
+    private func collectionViewLayout() -> UICollectionViewFlowLayout {
         let layout = UICollectionViewFlowLayout()
         layout.scrollDirection = .horizontal
-        layout .itemSize = CGSize(width: 140, height: 180)
+        layout.itemSize = CGSize(width: 140, height: 180)
         layout.minimumLineSpacing = 8
         layout.minimumInteritemSpacing = 8
         layout.sectionInset = UIEdgeInsets(top: 0, left: 0, bottom: 0, right: 0)

@@ -57,6 +57,7 @@ import Foundation
          callRecommandRequest(url: url) { imageList in
            posterImageList = imageList.map { APIKey.TMDBBACGROUNDIMAGE_W500 + $0 }
              completionHandler(posterImageList)
+             
              }
          }
  

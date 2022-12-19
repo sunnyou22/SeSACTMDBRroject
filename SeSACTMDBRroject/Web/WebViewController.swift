@@ -14,12 +14,11 @@ import SwiftyJSON
 class WebViewController: UIViewController {
     @IBOutlet weak var webview: WKWebView!
     
+    var items = [UIBarButtonItem]()
     var closeButton: UIBarButtonItem!
     var backwardButton: UIBarButtonItem!
     var forwardButton: UIBarButtonItem!
     var reloadButton: UIBarButtonItem!
-    let flexibleSpace = UIBarButtonItem(barButtonSystemItem: .fixedSpace, target: WebViewController.self, action: nil)
-    var items = [UIBarButtonItem]()
     var flag: Bool {
         get {
             UserDefaultHelper.shared.clipstate
@@ -36,8 +35,6 @@ class WebViewController: UIViewController {
         self.navigationController?.isToolbarHidden = false
         navigationItem.rightBarButtonItem = UIBarButtonItem(title: "클립", style: .plain, target: self, action: #selector(clikedClip))
         
-        setButton()
-        
         self.toolbarItems = items
         
         TrendManager.shared.callRequest(url: "\(APIKey.TMDBMOVIE)\(UserDefaultHelper.shared.movieID)/videos?api_key=\(APIKey.TMDBAPI_ID)&language=ko=KR") { json in
@@ -46,6 +43,12 @@ class WebViewController: UIViewController {
             }
         }
         
+    }
+    
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        
+        setButton()
     }
     
     //MARK: 클립 bool상태 바꾸기 코드
@@ -70,6 +73,9 @@ class WebViewController: UIViewController {
     }
     
     func setButton() {
+        let flexibleSpace = UIBarButtonItem(barButtonSystemItem: .fixedSpace, target: nil, action: nil)
+        flexibleSpace.width = 30
+
         closeButton = UIBarButtonItem(image: UIImage(systemName: "xmark"), style: .plain, target: self, action: #selector(closeWebView))
         
         backwardButton = UIBarButtonItem(image: UIImage(systemName: "arrow.counterclockwise"), style: .plain, target: self, action: #selector(gobackButtonCilcked))
