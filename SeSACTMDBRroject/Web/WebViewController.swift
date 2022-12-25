@@ -36,12 +36,14 @@ class WebViewController: UIViewController {
         navigationItem.rightBarButtonItem = UIBarButtonItem(title: "클립", style: .plain, target: self, action: #selector(clikedClip))
         
         self.toolbarItems = items
+    
+    }
+    
+    func openwebpage() async throws {
         
-        TrendManager.shared.callRequest(url: "\(APIKey.TMDBMOVIE)\(UserDefaultHelper.shared.movieID)/videos?api_key=\(APIKey.TMDBAPI_ID)&language=ko=KR") { json in
-            TrendManager.shared.requestVideo(json: json) { url in
-                self.openWebPage(url: url)
-            }
-        }
+        let json = try await TrendManager.shared.callRequest(url: "\(APIKey.TMDBMOVIE)\(UserDefaultHelper.shared.movieID)/videos?api_key=\(APIKey.TMDBAPI_ID)&language=ko=KR")
+        let url = try await TrendManager.shared.requestVideo(json: json)
+        self.openWebPage(url: url)
         
     }
     

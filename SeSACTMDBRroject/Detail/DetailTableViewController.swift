@@ -30,21 +30,18 @@ class DetailTableViewController: UITableViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        let recommandURL = APIKey.TMDBMOVIE + UserDefaultHelper.shared.movieID + "/recommendations?api_key=" + APIKey.TMDBAPI_ID + "&language=en-US&page=1"
-       print(recommandURL)
-        
-        requestPeopleData()
+      
         setViewConfiguration()
         searchTableView.delegate = self
         searchTableView.dataSource = self
         tableView.rowHeight = UITableView.automaticDimension
         
-        TrendManager.shared.requestRecommandPostImage(url: recommandURL) { value in
-            self.recommandMovieList = value
-            DispatchQueue.main.async {
-                self.searchTableView.reloadData()
-                print(recommandURL)
-            }
+        let recommandURL = APIKey.TMDBMOVIE + UserDefaultHelper.shared.movieID + "/recommendations?api_key=" + APIKey.TMDBAPI_ID + "&language=en-US&page=1"
+        
+        Task(priority: .userInitiated) {
+            try await  requestPeopleData()
+            try await TrendManager.shared.requestRecommandPostImage(url: recommandURL)
+            self.searchTableView.reloadData()
         }
     }
     
@@ -135,19 +132,19 @@ class DetailTableViewController: UITableViewController {
         tableView.reloadData()
     }
     
-    func requestPeopleData() {
+    func requestPeopleData() async throws {
         
-        TrendManager.shared.callRequest(url: APIKey.TMDBMOVIE + "\(UserDefaultHelper.shared.movieID)" + "/credits?api_key=" + APIKey.TMDBAPI_ID + "&language=en-US") { json in
+        let json = try await TrendManager.shared.callRequest(url: APIKey.TMDBMOVIE + "\(UserDefaultHelper.shared.movieID)" + "/credits?api_key=" + APIKey.TMDBAPI_ID + "&language=en-US")
+        
+        for item in json["cast"].arrayValue {
             
-            for item in json["cast"].arrayValue {
-                
-                let name = item["name"].stringValue
-                let image = APIKey.TMDBPOSTERIMAGE_W780 + item["profile_path"].stringValue
-                let castImageURL = URL(string: image)
-                let roleNickname = item["character"].stringValue
-                
-                self.castInfo.append(CastData(name: name, image: castImageURL!, roleNickname: roleNickname))
-            }
+            let name = item["name"].stringValue
+            let image = APIKey.TMDBPOSTERIMAGE_W780 + item["profile_path"].stringValue
+            let castImageURL = URL(string: image)
+            let roleNickname = item["character"].stringValue
+            
+            self.castInfo.append(CastData(name: name, image: castImageURL!, roleNickname: roleNickname))
+            
             DispatchQueue.main.async {
                 self.tableView.reloadData()
                 print("===================")
@@ -156,7 +153,7 @@ class DetailTableViewController: UITableViewController {
         }
     }
     
-  fileprivate func setViewConfiguration() {
+    fileprivate func setViewConfiguration() {
         tableView.separatorInset = UIEdgeInsets(top: 0, left: 20, bottom: 0, right: 0)
         backdropPathImage.kf.setImage(with: URL(string: movieDataList!.backdropPath))
         print(movieDataList!.backdropPath,"-------------")

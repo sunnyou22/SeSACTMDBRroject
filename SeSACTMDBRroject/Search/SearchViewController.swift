@@ -45,7 +45,9 @@ class SearchViewController: UIViewController {
         
         //api요청
         //1, 서버통신 2.데이터를 가져왔는지 , 3. 데이터 형태확인
-        requestTMDBData()
+        Task(priority: .high) {
+            try await requestTMDBData()
+        }
     }
     
     //MARK: - viewWillAppear
@@ -122,8 +124,10 @@ extension SearchViewController: UICollectionViewDataSourcePrefetching {
         for indexPath in indexPaths {
             if list.count - 1 == indexPath.item && list.count < totalCount {
                 startPage += 1
-                
-                requestTMDBData()
+                Task {
+                  try await requestTMDBData()
+                }
+              
             }
         }
     }

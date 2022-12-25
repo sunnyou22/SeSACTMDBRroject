@@ -27,7 +27,45 @@ class MainViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        let group = DispatchGroup()
         
+        group.enter()
+        Task {
+            print("task 시작")
+            let value = try await requestRecommandPostImage()
+            dump(requestRecommandPostImage)
+            self.postImageList = value
+            print(value)
+            print("task 끝")
+            group.leave()
+        }
+        
+        group.enter()
+        var title = ""
+        test()
+        if let ganreImageStringDicList = ganreImageStringDicList.randomElement() {
+            ganreImageStringDicList.forEach({ key, value in
+                title = key
+            })
+            print(title)
+        }
+        print(title)
+        bannerTitle.text = "\(title) 장르 영화들"
+        bannerTitle.titleConfig()
+        mainTableView.reloadData()
+        group.leave()
+        
+        group.notify(queue: .main) { [weak self] in
+            self?.configure()
+            
+            DispatchQueue.main.async {
+                self?.mainTableView.reloadData()
+            }
+        }
+        
+    }
+    
+    func configure() {
         mainTableView.delegate = self
         mainTableView.dataSource = self
         
@@ -38,30 +76,11 @@ class MainViewController: UIViewController {
         bannerCollectionView.collectionViewLayout = collectionViewlayout()
         
         mainTableView.separatorInset = UIEdgeInsets(top: 0, left: 4, bottom: 0, right: 0)
-        
-        //api부르기
-        requestRecommandPostImage { value in
-            dump(value)
-            self.postImageList = value
-            DispatchQueue.main.async {
-                self.mainTableView.reloadData()
-            }
-        }
-        
-        print(postImageList)
     }
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
-        var title = ""
-      
-        test()
-        
-        ganreImageStringDicList.randomElement()!.forEach({ key, value in
-            title = key
-        })
-    bannerTitle.text = "\(title) 장르 영화들"
-    bannerTitle.titleConfig()
+       
     }
 }
 
@@ -112,17 +131,21 @@ extension MainViewController: UICollectionViewDelegate, UICollectionViewDataSour
         
         if collectionView == bannerCollectionView {
             var count = 0
-            ganreImageStringDicList.randomElement()!.forEach({ key, value in
-               count = value.count
-            })
-            return count
-        } else if collectionView.tag == 0 {
-            return postImageList[collectionView.tag].count
-        } else if collectionView.tag == 1 {
-            return postImageList[collectionView.tag].count
-        } else if collectionView.tag == 2 {
-            return postImageList[collectionView.tag].count
-        }
+            if let ganreImageStringDicList = ganreImageStringDicList.randomElement() {
+                
+                ganreImageStringDicList.forEach({ key, value in
+                    count = value.count
+                })
+                return count
+            }
+            } else if collectionView.tag == 0 {
+                return postImageList[collectionView.tag].count
+            } else if collectionView.tag == 1 {
+                return postImageList[collectionView.tag].count
+            } else if collectionView.tag == 2 {
+                return postImageList[collectionView.tag].count
+            }
+        
         return 0
     }
     
@@ -157,6 +180,7 @@ extension MainViewController: UICollectionViewDelegate, UICollectionViewDataSour
             
         } else {
             let url = URL(string: postImageList[collectionView.tag][indexPath.row])
+            print("==============================", url)
             cell.cardView.posterImageView.kf.setImage(with: url)
         }
         
@@ -176,30 +200,26 @@ extension MainViewController: UICollectionViewDelegate, UICollectionViewDataSour
 }
 
 extension MainViewController {
-    func requestRecommandPostImage(completionHandler: @escaping ([[String]]) -> ()) {
+    func requestRecommandPostImage() async throws -> [[String]] {
         
-        var postImageList: [[String]] = []
+        let similarMoviePostImage = try await TrendManager.shared.requestRecommandPostImage(url: APIKey.SIMILARMOVIE)
+       postImageList.append(similarMoviePostImage)
         
-        TrendManager.shared.requestRecommandPostImage(url: APIKey.SIMILARMOVIE) { value in
-            postImageList.append(value)
-            print("시밀러")
-            TrendManager.shared.requestRecommandPostImage(url: APIKey.NOWPLAY) { value in
-                postImageList.append(value)
-                print("지금")
-                TrendManager.shared.requestRecommandPostImage(url: APIKey.POPULARMOVIE) { value in
-                    postImageList.append(value)
-                    print("인기")
-                    completionHandler(postImageList)
-                }
-            }
-        }
+        let nowPlayRecommandPostImage = try await TrendManager.shared.requestRecommandPostImage(url: APIKey.NOWPLAY)
+        postImageList.append(nowPlayRecommandPostImage)
+        
+        let popualrMovie = try await TrendManager.shared.requestRecommandPostImage(url: APIKey.POPULARMOVIE)
+        postImageList.append(popualrMovie)
+        
+        return  postImageList
     }
 }
+        
 
 extension MainViewController {
     
     @discardableResult
-   private func  test() -> Dictionary<String, [String]> {
+   private func test() -> Dictionary<String, [String]> {
         var imageList: [String] = []
         guard let bannerGanreDic = self.bannerGanreDic else {
             print("장르 키값오류")
