@@ -8,7 +8,7 @@
 ## 스킬
 | kind | stack |
 | ------ | ------ |
-| Framwork | `UIKit` WebKit` `Foundation` |
+| Framwork | `UIKit` `WebKit` `Foundation` |
 | UI | `Storyboard` |
 | Data & Network | `Alamofire` `SwiftyJSON` |
 | Dependency Manager | `SPM` |
